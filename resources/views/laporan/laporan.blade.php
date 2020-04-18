@@ -12,7 +12,7 @@
 			          	</div>
                   </div>  
             <div class="card-body ">
-              <table id="example1" class="table table-bordered table-striped ">
+              <table id="table-laporan" class="table table-bordered table-striped ">
                 <thead>
                 <tr>
                       <th>No</th>
@@ -25,77 +25,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                      <td>1</td>
-                      <td>2016</td>
-                      <td>Diponegoro</td>
-                      <td>
-						          <span class='label label-default'>Selesai Magang</span>					  </td>
-                      <td>Laporan PKL 2018 Diponegoro</td>
-                      
-                      <td><a class="btn btn-primary view-pdf" href="marsekal-rama.net/CV-Rama.pdf">View</a></td>
-                      <td>12 Feb 2020</td>
-                </tr>
-                <tr>
-                      <td>2</td>
-                      <td>2017</td>
-                      <td>Diponegoro</td>
-                      <td>
-					          	<span class='label label-default'>Selesai Magang</span>					  </td>
-                      <td>Laporan PKL 2018 Diponegoro</td>
-                      <td><a class="btn btn-primary view-pdf" href="cv.marsekal-rama.net/files/CV-Rama.pdf">View</a></td>
-                      <td>12 Feb 2020</td>
-                </tr>
-                <tr>
-                      <td>3</td>
-                      <td>2018</td>
-                      <td>Diponegoro</td>
-                      <td>
-					          	<span class='label label-default'>Selesai Magang</span>					  </td>
-                      <td>Laporan PKL 2018 Diponegoro</td>
-                      <td><a class="btn btn-primary view-pdf" href="marsekal-rama.net/CV-Rama.pdf">View</a></td>
-                      <td>12 Feb 2020</td>
-                </tr>
-                <tr>
-                      <td>4</td>
-                      <td>2019</td>
-                      <td>Diponegoro</td>
-                      <td>
-					          	<span class='label label-default'>Selesai Magang</span>					  </td>
-                      <td>Laporan PKL 2018 Diponegoro</td>
-                      <td><a class="btn btn-primary view-pdf" href="marsekal-rama.net/CV-Rama.pdf">View</a></td>
-                      <td>12 Feb 2020</td>
-                </tr>
-                <tr>
-                      <td>5</td>
-                      <td>2019</td>
-                      <td>Diponegoro</td>
-                      <td>
-					          	<span class='label label-default'>Selesai Magang</span>					  </td>
-                      <td>Laporan PKL 2018 Diponegoro</td>
-                      <td><a class="btn btn-primary view-pdf" href="marsekal-rama.net/CV-Rama.pdf">View</a></td>
-                      <td>12 Feb 2020</td>
-                </tr>
-                <tr>
-                      <td>6</td>
-                      <td>2019</td>
-                      <td>Diponegoro</td>
-                      <td>
-					          	<span class='label label-default'>Selesai Magang</span>					  </td>
-                      <td>Laporan PKL 2018 Diponegoro</td>
-                      <td><a class="btn btn-primary view-pdf" href="marsekal-rama.net/CV-Rama.pdf">View</a></td>
-                      <td>12 Feb 2020</td>
-                </tr>
-                <tr>
-                      <td>7</td>
-                      <td>2019</td>
-                      <td>Diponegoro</td>
-                      <td>
-					          	<span class='label label-default'>Selesai Magang</span>					  </td>
-                      <td>Laporan PKL 2018 Diponegoro</td>
-                      <td><a class="btn btn-primary view-pdf" href="marsekal-rama.net/CV-Rama.pdf">View</a></td>
-                      <td>12 Feb 2020</td>
-                </tr>
                 </tbody>
               </table>
             </div>
@@ -137,6 +66,34 @@ $(function(){
         return false;        
     });    
 })
+</script>
+<script>
+  var tableLaporan;
+  $(document).ready(function(){
+    tableLaporan = $('#table-laporan').DataTable({
+        processing	: true,
+        language: {
+                    search: "INPUT",
+                    searchPlaceholder: "Search records"
+                  },
+        // dom 		: "<fl<t>ip>",
+  			serverSide	: true,
+  			stateSave: true,
+        ajax		: {
+            url: "{{ url('table/data-laporan') }}",
+            type: "GET",
+        },
+        columns: [
+            { data: 'id_laporan', name:'id_laporan', visible:false},
+            { data: 'group.periode.tahun_periode', name:'group.periode.tahun_periode', visible:true},
+            { data: 'group.nama_kelompok', name:'group.nama_kelompok', visible:true},
+            { data: 'group.status', name:'group.status', visible:true},
+            { data: 'judul', name:'judul', visible:true},
+            { data: 'action', name:'action', visible:true},
+            { data: 'tgl_upload', name:'tgl_upload', visible:true},
+        ],
+      });
+  });
 </script>
 
 @endsection

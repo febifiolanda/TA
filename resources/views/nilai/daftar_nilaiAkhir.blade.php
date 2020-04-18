@@ -32,6 +32,7 @@
                     <div class="col-sm-4"> PT. GMF AeroAsia Tbk</div>
                 </div> -->
                 <br>
+                <!-- isi table -->
               <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -69,8 +70,7 @@
                 </tr>
                 <tr>
                   <td>17/430000/SV/13000</td>
-                  <td>dear
-                  </td>
+                  <td>dear</td>
                   <td>997896</td>
                   <td>Anggota</td> 
                   <td class="text-center py-0 align-middle">

@@ -63,9 +63,17 @@ class Mah extends Controller
     {
         return view('logbook.list_kegiatanHarian');
     }
+    //  public function list_kegiatan()
+    // {
+    //     return view('logbook.list_kegiatan');
+    // }
     public function daftar_nilaiAkhir()
     {
         return view('nilai.daftar_nilaiAkhir');
+    }
+    public function list_nilaiAkhir()
+    {
+        return view('nilai.list_nilaiAkhir');
     }
    
 

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Company;
 
-class CompanyController extends Controller
+class PenilaianPembimbingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $data = Company::all();
-        dd($data);
+    //
     }
 
     /**

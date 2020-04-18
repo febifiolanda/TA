@@ -17,6 +17,8 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
    <!-- DataTables -->
    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+   <!-- Toast -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -32,7 +34,7 @@
          <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <!-- <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">    
@@ -41,12 +43,12 @@
             </button>
         </div>
       </div>
-    </form>
+    </form> -->
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i><img src="dist/img/user1-128x128.jpg" alt="User Avatar" style="width:25px" class="mr-3 img-circle"></i>
-          <span class="namaProfile">Admin</span>
+          <span class="namaProfile">Dosen</span>
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
           <a href="#" class="dropdown-item">
@@ -111,7 +113,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="/" class="nav-link">
+            <a href="/list_kegiatanHarian" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>Buku Harian </p>
             </a>
@@ -150,7 +152,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/daftar_nilaiAkhir" class="nav-link">
+                <a href="/list_nilaiAkhir" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Nilai Akhir</p>
                 </a>
@@ -187,7 +189,7 @@
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+  // $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -195,6 +197,8 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- Toast -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('scripts')
 
 </body>

@@ -34,7 +34,7 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Kelompok</th>
-                  <th>Angkatan</th>
+                  <th>Periode</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>

@@ -9,7 +9,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Buku Harian </h3>
+              <h3 class="card-title">Daftar Kelompok Nilai Akhir  </h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -25,41 +25,24 @@
                             <option>option 4</option>
                             <option>option 5</option>
                           </select>
-                      </div>
+                       </div>
                       <button type="submit" class="btn btn-default">Filter</button> <br><br>
                 </form>
-              </div>
-              <table id="table-bukuharian" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama Mahasiswa</th>
-                  <th>NIM</th>
-                  <th>Aksi</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Dear nasyita</td>
-                  <td class="text-center py-0 align-middle">
-                      <div class="btn-group btn-group-sm">
-                        <a href="/list_kegiatan" class="btn btn-info"><i class="fas fa-list"></i></a>
-                      </div>
-                    </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Febi Fiolanda </td>
-                  <td class="text-center py-0 align-middle">
-                      <div class="btn-group btn-group-sm">
-                        <a href="/list_kegiatan" class="btn btn-info"><i class="fas fa-list"></i></a>
-                      </div>
-                    </td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
+                  </div>
+                        <table id="table-list" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>No</th>
+                              <th>Nama Kelompok</th>
+                              <th>Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              
+                          </tbody>
+                        </table>
+                    </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
@@ -77,14 +60,9 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- page script -->
 <script>
-  $(function () {
-    $("#example1").DataTable();
-  });
-</script>
-<script>
   var tableGroup;
   $(document).ready(function(){
-    tableGroup = $('#table-bukuharian').DataTable({
+    tableGroup = $('#table-list').DataTable({
         processing	: true,
         language: {
                     search: "INPUT",
@@ -94,13 +72,13 @@
   			serverSide	: true,
   			stateSave: true,
         ajax		: {
-            url: "{{ url('table/data-bukuharian-mahasiswa') }}",
+            url: "{{ url('table/data-groupNilaiAkhir') }}",
             type: "GET",
         },
         columns: [
-            { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
-            { data: 'mahasiswa.nama', name:'mahasiswa.nama', visible:true},
-            { data: 'mahasiswa.nim', name:'mahasiswa.nim', visible:true},
+            { data: 'id_kelompok', name:'id_kelompok', visible:false},
+            { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
+            { data: 'nama_kelompok', name:'nama_kelompok', visible:true},
             { data: 'action', name:'action', visible:true},
         ],
       });

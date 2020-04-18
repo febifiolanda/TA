@@ -57,7 +57,7 @@
                       <div class="btn-group btn-group-sm">
                         <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                       </div>
-                    </td>
+                  </td>
                 </tr>
                 <tr>
                   <td>3</td>
@@ -67,7 +67,7 @@
                       <div class="btn-group btn-group-sm">
                         <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                       </div>
-                    </td>
+                  </td>
                 </tr>
                 <tr>
                   <td>4</td>
@@ -97,7 +97,7 @@
                       <div class="btn-group btn-group-sm">
                         <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                       </div>
-                    </td>
+                  </td>
                 </tr>
                 <tr>
                   <td>8</td>
@@ -107,7 +107,7 @@
                       <div class="btn-group btn-group-sm">
                         <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                       </div>
-                    </td>
+                  </td>
                 </tr>
                 <tr>
                   <td>9</td>
@@ -117,7 +117,7 @@
                       <div class="btn-group btn-group-sm">
                         <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                       </div>
-                    </td>
+                  </td>
                 </tr>
                 <tr>
                   <td>10</td>

@@ -1,12 +1,11 @@
 @extends('layout.welcome')
 @section('content')
-    <section class="content-header">
-    </section>
+<section class="content-header">
+</section>
     <section class="content">
-    
-    <div class="row">
+    	<div class="row">
         <!-- left column -->
-        <div class="col-md-12">
+        	<div class="col-md-12">
           <!-- general form elements -->
             
             <div class="card card-primary card-outline">
@@ -14,16 +13,15 @@
                     <h3 class="box-title">Penilaian Mahasiswa Details</h3>
                 </div><!-- /.box-header -->
                 
-      <div class="card-body">
-      
-      <div class="box-body">
+      			<div class="card-body">
+      				<div class="box-body">
 						<div class="col-md-12 text-center">
-                        <div class="col-md-1"> </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-2">
-                                <span class="badge badge-success"> 5 </span>
-                                <br>Sangat Baik
-                            </div>
+                        	<div class="col-md-1"> </div>
+                        		<div class="row justify-content-center">
+                            		<div class="col-md-2">
+                                	<span class="badge badge-success"> 5 </span>
+                                	<br>Sangat Baik
+                            		</div>
 							
                             <div class="col-md-2"> 
                                 <span class="badge badge-primary"> 4 </span>
@@ -43,9 +41,9 @@
                                 <span class="badge badge-secondary"> 1 </span>
                                 <br>Sangat Kurang
                             </div>
-						</div>
-                    </div>
-      </div>
+								</div>
+                    		</div>
+      			</div>
                 <!-- form start -->
                 <br>
 					<br>
@@ -117,40 +115,40 @@
               <div class="row">
 								<div class="col-md-3">                                
 									<div class="form-group text-center">
-									<input type="text" class="form-control required" id="nama_mahasiswa" value="Marsekal Rama">
+									<input style="text-align:center" type="text" class="form-control required" id="nama_mahasiswa" value="Marsekal Rama">
 
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 								<div class="col-md">
@@ -163,40 +161,40 @@
 				<div class="row">
 								<div class="col-md-3">                                
 									<div class="form-group text-center">
-									<input type="text" class="form-control required" id="nama_mahasiswa" value="Nofa Dwi Adelia">
+									<input style="text-align:center" type="text" class="form-control required" id="nama_mahasiswa" value="Nofa Dwi Adelia">
 
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 								<div class="col-md">
@@ -209,40 +207,40 @@
 			<div class="row">
 								<div class="col-md-3">                                
 									<div class="form-group text-center">
-									<input type="text" class="form-control required" id="nama_mahasiswa" value="Febi Fiolanda">
+									<input style="text-align:center" type="text" class="form-control required" id="nama_mahasiswa" value="Febi Fiolanda">
 
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
 									</div>
 								</div>
 								<div class="col-md">

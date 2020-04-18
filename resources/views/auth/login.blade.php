@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
 
       <form z>
         <div class="input-group mb-3">
-          <input type="etext" id="etUsername" class="form-control" placeholder="Username">
+          <input type="etext" class="form-control" id="etUsername"placeholder="Username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -38,7 +39,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" id="etPassword" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" id="etPassword"placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -50,7 +51,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <a href="/login.dashboard" id="btn-login" class="btn btn-primary btn-block btn-flat">Sign In</a>
+            <a class="btn btn-primary btn-block  btn-flat" id="btn-login">Sign In</a>
           </div>
           <!-- /.col -->
         </div>
@@ -67,7 +68,6 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
- //script javascript untuk fungsi login
 <script type="text/javascript">
 $(document).on('click','#btn-login',function(event){
   event.preventDefault();
@@ -75,21 +75,19 @@ $(document).on('click','#btn-login',function(event){
   url:'http://127.0.0.1:8000/api/login',
   type:'POST',
   data: {
-    username :document.getElementById("etUsername").value,
-    password :document.getElementById("etPassword").value  
-
+    username: document.getElementById("etUsername").value,
+    password:document.getElementById("etPassword").value 
   },
 })
-// .done(function(result){ //jika username&password sesuai database maka data diambil dan di masuk ke dashboard
-//   console.log(result);
-//   if(result.api_token!=null){
-//     // redirect => dashboard
-//     window.location.href='http://127.0.0.1:8000/dashboard?api_token='+result.api_token;
-//   }
-// });
-
+ .done(function(result){ //jika username&password sesuai database maka data diambil dan di masuk ke dashboard
+   console.log(result);
+   if(result.api_token!=null){
+     redirect => dashboard
+     window.location.href='http://127.0.0.1:8000/dashboard?api_token='+result.api_token;
+   }
+ });
+// // 
 });
-
 
 </script>
 </body>
