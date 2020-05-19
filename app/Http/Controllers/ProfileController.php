@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image as Image;
+use Storage;
+use File;
+// use Image;
+
 use App\Dosen;
 
 class ProfileController extends Controller
@@ -24,15 +31,68 @@ class ProfileController extends Controller
                             ->first();
         return view('profile.profile', compact('dosen'));
     }
+    public function add(){
+        if(!empty($request->foto)){
+            $file =$request->file('foto');
+            $extension=strtolower($file->GetClientOriginalExtension());
+            $filename=$request->name .'.'. $extension;
+            Storage::put('image/users/'.$filename,File::get($file));
+            $file_server=Storage::get('image/users/'.$filename);
+            $img=Image::make($file_server)->resize(141,141);
+            $img->save(base_path('public/imamges/users'.$filename));
+        }
 
+
+
+
+        // $post = Dosen::all();
+        // return view('post.add', compact('dosen'));
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    public function save(Request $request)
     {
-        //
+    //validasi data
+    $this->validate($request, [
+    	'foto'	=> 'nullable|image|mimes:jpg,png,jpeg,webp'
+    ]);
+
+    //menyimpan ke table posts kemudian redirect page 
+
+    $post = Dosen::create(['foto' => $request->foto]);
+    return redirect(route('post.add'));
+        }
+
+    public function updateAvatar(Request $request, $id_dosen)
+    {
+        $dosen = Dosen::where('id_dosen',$id_dosen)->first();
+
+        $this-> validate($request,
+        [
+            'foto'	=> 'required |mimes:jpg,png,jpeg,webp'
+        ]);
+
+        $file = $request->file('foto');
+
+        $extension = strtolower($file->getClientOriginalExtension());
+        $filename = $dosen->nama . '.' . $extension;
+        Storage::put('images/users/' . $filename, File::get($file));
+        $file_server = Storage::get('images/users/' . $filename);
+        // $file_server = Storage::get('public/uploads/avatar/' . $filename);
+        $img = Image::make($file_server)->resize(141, 141);
+        $img->save(base_path('public/images/users/' . $filename));
+        
+        
+        $dosen->foto=$filename;
+        // $dosen->updated_by=Auth::user()['id_users'];
+        $dosen->save();
+        
+        return redirect('/profile')
+        ->with('alert-success','Avatar has been changed!');
     }
 
     /**
@@ -46,6 +106,8 @@ class ProfileController extends Controller
         $profile=Dosen::create($request->all());
         return response()->json($profile, 200);
     }
+
+    
 
     /**
      * Display the specified resource.
@@ -109,29 +171,7 @@ class ProfileController extends Controller
 
         return redirect('profile'); 
     }
-    public function updateAvatar(Request $request, $id)
-    {
-        $dosen = Dosen::findOrFail($id);
-
-        $file = $request->file('foto');
-
-        $extension = strtolower($file->getClientOriginalExtension());
-        $filename = $dosen->nama . '.' . $extension;
-        Storage::put('public/uploads/avatar/' . $filename, File::get($file));
-        $file_server = Storage::get('public/uploads/avatar/' . $filename);
-        // $file_server = Storage::get('public/uploads/avatar/' . $filename);
-        $img = Image::make($file_server)->resize(141, 141);
-        $path = public_path('uploads/avatar' . $filename);
-        $file->move('uploads/avatar',$filename);
-        $dosen->foto=$filename;
-
-        $dosen->save();
-        
-        return redirect('profile')
-        ->with('alert-success','Avatar has been changed!');
-    }
-
-    /**
+        /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

@@ -48,10 +48,10 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i><img src="dist/img/user1-128x128.jpg" alt="User Avatar" style="width:25px" class="mr-3 img-circle"></i>
-          <span class="namaProfile">Dosen</span>
+          <span class="namaProfile"><b>dosen  </b></span>
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-          <a href="#" class="dropdown-item">
+          <a href="/login" id="btn-logout" class="dropdown-item">
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
@@ -83,7 +83,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block namaProfile">Nama Dosen </a>
+          <a href="#" class="d-block namaProfile"><b>dosen</b></a>
         </div>
       </div>
 
@@ -128,13 +128,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/input_nilai" class="nav-link">
+                <a href="/list_nilaiAkhir" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dosen Pembimbing</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/input_nilai" class="nav-link">
+                <a href="/list_nilaiAkhir" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dosen Penguji</p>
                 </a>
@@ -152,7 +152,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/list_nilaiAkhir" class="nav-link">
+                <a href="/list_daftarNilaiAkhir" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Nilai Akhir</p>
                 </a>
@@ -197,6 +197,31 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script type="text/javascript">
+$(document).on('click','#btn-logout',function(event){
+  event.preventDefault();
+  $.ajax({
+  url:'http://127.0.0.1:8000/api/login',
+  type:'POST',
+  // data: {
+  //   username :document.getElementById("etUsername").value,
+  //   password :document.getElementById("etPassword").value  
+
+  },
+})
+// .done(function(result){ //jika username&password sesuai database maka data diambil dan di masuk ke dashboard
+//   console.log(result);
+//   if(result.api_token!=null){
+//     // redirect => dashboard
+//     window.location.href='http://127.0.0.1:8000/dashboard?api_token='+result.api_token;
+//   }
+// });
+
+});
+
+
+</script>
 <!-- Toast -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('scripts')

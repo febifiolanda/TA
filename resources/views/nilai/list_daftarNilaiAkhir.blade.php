@@ -9,7 +9,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Daftar Kelompok Nilai</h3>
+              <h3 class="card-title">Daftar Kelompok Nilai Akhir  </h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -29,13 +29,16 @@
                       <button type="submit" class="btn btn-default">Filter</button> <br><br>
                 </form>
                   </div>
-                        <table id="table-list" class="table table-bordered table-striped">
+                        <table id="table-list1" class="table table-bordered table-striped">
                           <thead>
                             <tr>
                               <th>Id</th>
                               <th>No</th>
-                              <th>Nama Kelompok</th>
+                              <th>Nama Mahasiswa</th>
+                              <th>Nim</th>
                               <th>Periode</th>
+                              <th>Tanggal Mulai</th>
+                              <th>Tanggal Selesai</th>
                               <th>Aksi</th>
                             </tr>
                           </thead>
@@ -63,7 +66,7 @@
 <script>
   var tableGroup;
   $(document).ready(function(){
-    tableGroup = $('#table-list').DataTable({
+    tableGroup = $('#table-list1').DataTable({
         processing	: true,
         language: {
                     search: "INPUT",
@@ -73,14 +76,17 @@
   			serverSide	: true,
   			stateSave: true,
         ajax		: {
-            url: "{{ url('table/data-groupNilaiAkhir') }}",
+            url: "{{ url('table/data-daftarNilaiAkhir') }}",
             type: "GET",
         },
         columns: [
-            { data: 'id_kelompok', name:'id_kelompok', visible:false},
+            { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
             { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
-            { data: 'nama_kelompok', name:'nama_kelompok', visible:true},
-            { data: 'periode.tahun_periode', name:'periode.tahun_periode', visible:true},
+            { data: 'nama', name:'nama', visible:true},
+            { data: 'nim', name:'nim', visible:true},
+            { data: 'periode.tahun_periode', name:'.periode.tahun_periode', visible:true},
+            { data: 'periode.tgl_mulai', name:'periode.tgl_mulai', visible:true},
+            { data: 'periode.tgl_selesai', name:'periode.tgl_selesai', visible:true},
             { data: 'action', name:'action', visible:true},
         ],
       });

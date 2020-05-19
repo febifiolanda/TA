@@ -14,4 +14,10 @@ class Periode extends Model
     public function group(){
         return $this->hasMany('App\Group','id_periode','id_periode') ;
     }
+    public function daftarpenilaianpenguji(){
+        return $this->hasMany('App\DaftarPenilaianPenguji','id_periode','id_periode') ;
+    }
+    public function ListNilaiAkhir(){
+        return $this->belongsTo('App\ListNilaiAkhir','id_periode','id_periode') ;
+    }
 }

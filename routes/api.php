@@ -6,6 +6,9 @@ use App\Dosen;
 use App\BukuHarian;
 use App\Laporan;
 use App\Periode;
+use App\DaftarNilaiAkhir;
+use App\Group;
+use App\listnilaiakhir;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +38,15 @@ use App\Periode;
     Route::apiResource('laporan','LaporanController');
     Route::apiResource('dosen','ProfileController');
     Route::apiResource('bukuharian','BukuHarianController');
+    Route::apiResource('daftarnilaiakhir','DaftarNilaiAkhirController');
+    Route::apiResource('listdaftarnilaiakhir','ListDaftarNilaiAkhirController');
+    Route::apiResource('listnilaiakhir','ListNilaiAkhirController');
+   
+   
+    
 
     Route::post('login', 'UserController@login');
+    Route::post('logout', 'UserController@api_logout');
 
 //     Route::post('login', function(Request $request){
 //     if(auth()->attempt([

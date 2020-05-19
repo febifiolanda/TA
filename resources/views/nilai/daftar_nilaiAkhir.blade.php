@@ -33,18 +33,20 @@
                 </div> -->
                 <br>
                 <!-- isi table -->
-              <table class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped" id="table-daftarnilai">
                 <thead>
                 <tr>
+                  <th>id</th>
+                  <th>No</th>
                   <th>NIM</th>
                   <th>Nama Mahasiswa</th>
                   <th>No.HP</th>
-                  <th>Status</th>
+                  <th>Angkatan</th>
                   <th>Detail</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <!-- <tr>
                   <td>17/410000/SV/13000</td>
                   <td>marsekal
                   </td>
@@ -78,7 +80,7 @@
                         <a href="nilai_akhir" class="btn btn-info"><i class="fas fa-eye"></i></a>
                       </div>
                     </td>
-                </tr>
+                </tr> -->
                 </tbody>
               </table>
             </div>
@@ -101,6 +103,34 @@
 <script>
   $(function () {
     $("#example1").DataTable();
+  });
+</script>
+<script>
+  var tableGroup;
+  $(document).ready(function(){
+    tableGroup = $('#table-daftarnilai').DataTable({
+        processing	: true,
+        language: {
+                    search: "INPUT",
+                    searchPlaceholder: "Search records"
+                  },
+        // dom 		: "<fl<t>ip>",
+  			serverSide	: true,
+  			stateSave: true,
+        ajax		: {
+            url: "{{ url('table/data-daftarNilaiAkhir') }}",
+            type: "GET",
+        },
+        columns: [
+            { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
+            { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
+            { data: 'nim', name:'nim', visible:true},
+            { data: 'nama', name:'nama', visible:true},
+            { data: 'no_hp', name:'no_hp', visible:true},
+            { data: 'angkatan', name:'angkatan', visible:true},
+            { data: 'action', name:'action', visible:true},
+        ],
+      });
   });
 </script>
 @endsection

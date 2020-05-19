@@ -23,4 +23,8 @@ class Dosen extends Model
         'isDeleted',
         'created_by'
     ];
+
+    public function instansi(){
+        return $this->belongsTo('App\Instansi','id_users','id_users') ;
+    }
 }

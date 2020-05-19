@@ -51,9 +51,9 @@ class Mah extends Controller
     {
         return view('login.login');
     }
-    public function detail_inputNilai()
+    public function detail_inputNilai($id_kelompok)
     {
-        return view('nilai.detail_inputNilai');
+        return view('nilai.detail_inputNilai',compact('id_kelompok'));
     }
     public function edit_profil()
     {
@@ -75,6 +75,15 @@ class Mah extends Controller
     {
         return view('nilai.list_nilaiAkhir');
     }
+    public function list_daftarNilaiAkhir()
+    {
+        return view('nilai.list_daftarNilaiAkhir');
+    }
+    public function logout()
+    {
+        return view('login.login');
+    }
+
    
 
 

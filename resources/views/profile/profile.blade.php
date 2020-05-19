@@ -26,26 +26,27 @@
                 @endalert -->
             @endif
         <div class="col-12">
-    
+
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
                     <div class="image">
-                    <img class="img-circle" width="100px" height="100px" src="{{ $dosen->foto ? asset('uploads/avatar/' . $dosen->foto) : asset('dist/img/iconuser.png') }}" >                    <!-- <img class="img-circle" src="{{ asset('uploads/avatar/' . $dosen->foto) }}" width="50px" height="50px"> -->
+                    <img class="img-circle" width="100px" height="100px" src="{{ asset('/images/users/'.$dosen->nama.'.jpg') }}" >                    <!-- <img class="img-circle" src="{{ asset('uploads/avatar/' . $dosen->foto) }}" width="50px" height="50px"> -->
                     </div>
                     </div>
                                             
-                    <form action="profile/profile/{{$dosen->id_dosen}}" method="POST" enctype="multipart/form-data">                                            
-                        @csrf
+                    <form action="/profile/{{$dosen->id_dosen}}" method="POST" enctype="multipart/form-data">                                            
+                    {{ csrf_field() }}
+                    
                         <div class="box-body">
                             <div class="row justify-content-center">
                                 <div class="col-md-9">     
-                                    </br>                           									
+                                    </br>                       									
                                     <div class="input-group input-group-sm">
                                         <input type="file" class="form-control required" id="foto" name="foto">
                                         <input type="hidden" class="form-control required" id="id_dosen" name="id_dosen" value="2">                         
                                         <span class="input-group-append">
-                                            <button type="submit" class="btn btn-info btn-flat" >Save</button>
+                                            <button type="submit" value="Upload" class="btn btn-info btn-flat" >Save</button>
                                         </span>
                                     </div>
                                     <p class="text-muted"><small><i>*Max ukuran 1 MB, JPG|PNG</i></small></p>					

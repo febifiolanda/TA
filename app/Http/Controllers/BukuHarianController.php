@@ -28,8 +28,8 @@ class BukuHarianController extends Controller
             return $tanggal;
         })
         ->addColumn('action', function($row){
-            $btn = '<a href="#" class="btn-sm btn-info"><i class="fas fa-check"></i></a>';
-            $btn = $btn.' <a href="#" class="btn-sm btn-danger"><i class="fas fa-times"></i></a>';
+            $btn = '<a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'terima']).'" class="btn-sm btn-info"><i class="fas fa-check"></i></a>';
+            $btn = $btn.' <a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'tolak']).'" class="btn-sm btn-danger"><i class="fas fa-times"></i></a>';
             return $btn;
         })
         ->addIndexColumn()
@@ -50,6 +50,24 @@ class BukuHarianController extends Controller
         ->addIndexColumn()
         ->rawColumns(['action'])
         ->make(true);
+    }
+
+    public function acckegiatan(Request $request, $id, $tipe){
+        switch ($tipe) {
+            case 'terima':
+                //sementara kalo diterima statusnya diperiksa ya
+                $status = 'diperiksa';
+                break;
+            default:
+                //kalo ditolak diproses
+                $status = 'diproses';
+                break;
+        }
+        $bukuharian = BukuHarian::findOrFail($request->id);
+        $bukuharian->status = $status;
+
+        $bukuharian->save();
+        return redirect()->route('bukuharian.index',$bukuharian->id_mahasiswa);
     }
 
     /**

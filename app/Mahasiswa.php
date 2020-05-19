@@ -22,4 +22,11 @@ class Mahasiswa extends Model
     public function detailGroup(){
         return $this->hasMany('App\DetailGroup','id_mahasiswa','id_mahasiswa') ;
     }
+    public function ListNilaiAkhir(){
+        return $this->hasMany('App\Mahasiswa','id_mahasiswa','id_mahasiswa') ;
+    }
+    public function periode(){
+        return $this->belongsTo('App\Periode','id_periode','id_periode') ;
+    }
+    
 }

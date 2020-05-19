@@ -29,9 +29,10 @@
                       <button type="submit" class="btn btn-default">Filter</button> <br><br>
                 </form>
               </div>
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="tabel-inputNilai" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>Id</th>
                   <th>No</th>
                   <th>Nama Kelompok</th>
                   <th>Periode</th>
@@ -39,7 +40,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <!-- <tr>
                   <td>1</td>
                   <td>Kelompok 1</td>
                   <td>2017</td>
@@ -148,7 +149,7 @@
                         <a href="#" class="btn btn-info"><i class="fas fa-list"></i></a>
                       </div>
                     </td>
-                </tr>
+                </tr> -->
                 </tbody>
               </table>
             </div>
@@ -171,6 +172,32 @@
 <script>
   $(function () {
     $("#example1").DataTable();
+  });
+</script>
+<script>
+  var tableGroup;
+  $(document).ready(function(){
+    tableGroup = $('#table-inputNilai').DataTable({
+        processing	: true,
+        language: {
+                    search: "INPUT",
+                    searchPlaceholder: "Search records"
+                  },
+        // dom 		: "<fl<t>ip>",
+  			serverSide	: true,
+  			stateSave: true,
+        ajax		: {
+            url: "{{ url('table/data-groupNilaiAkhir') }}",
+            type: "GET",
+        },
+        columns: [
+            { data: 'id_kelompok', name:'id_kelompok', visible:false},
+            { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
+            { data: 'nama_kelompok', name:'nama_kelompok', visible:true},
+            { data: 'periode.tahun_periode', name:'periode.tahun_periode', visible:true},
+            { data: 'action', name:'action', visible:true},
+        ],
+      });
   });
 </script>
 @endsection
