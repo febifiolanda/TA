@@ -46,7 +46,7 @@ use App\listnilaiakhir;
     
 
     Route::post('login', 'UserController@login');
-    Route::post('logout', 'UserController@api_logout');
+    Route::middleware('auth:api')-> get('dosen/logout'. 'UserController@api_logout');
 
 //     Route::post('login', function(Request $request){
 //     if(auth()->attempt([

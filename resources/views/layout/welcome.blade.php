@@ -47,8 +47,8 @@
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i><img src="dist/img/user1-128x128.jpg" alt="User Avatar" style="width:25px" class="mr-3 img-circle"></i>
-          <span class="namaProfile"><b>dosen  </b></span>
+          <i><img src="{{ asset('/images/users/'.$dosen->foto) }}" alt="User Avatar" style="width:25px" class="mr-3 img-circle"></i>
+          <span class="namaProfile"><b>{{$dosen->nama}}  </b></span>
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
           <a href="/login" id="btn-logout" class="dropdown-item">
@@ -80,10 +80,10 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('/images/users/'.$dosen->nama.'.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block namaProfile"><b>dosen</b></a>
+          <a href="#" class="d-block namaProfile"><b>{{$dosen->nama}}</b></a>
         </div>
       </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Group;
+use App\Dosen;
 use App\DetailGroup;
 
 
@@ -18,7 +19,11 @@ class GroupController extends Controller
     {
         $data = Group::all();
         // dd($data);
-        return view('kelompok.kelompok', compact('data'));
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('kelompok.kelompok', compact('data','dosen'));
 
        
     }
@@ -65,7 +70,11 @@ class GroupController extends Controller
      */
     public function show($id_kelompok)
     {
-        return view('kelompok.detail_kelompok');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('kelompok.detail_kelompok',compact('dosen'));
     }
 
    

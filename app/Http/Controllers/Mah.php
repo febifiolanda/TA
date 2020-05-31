@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Dosen;
 
 class Mah extends Controller
 {
@@ -25,11 +26,19 @@ class Mah extends Controller
     }
     public function dashboard()
     {
-        return view('layout.dashboard');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+                            ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+                            ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+                            ->first();
+        return view('layout.dashboard',compact('dosen'));
     }
     public function detailnilai()
     {
-        return view('nilai.detail_nilai');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('nilai.detail_nilai',compact('dosen'));
     }
     public function nilaipenguji()
     {
@@ -41,11 +50,19 @@ class Mah extends Controller
     }
     public function laporan()
     {
-        return view('laporan.laporan');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('laporan.laporan',compact('dosen'));
     }
     public function nilai_akhir()
     {
-        return view('nilai.nilai_akhir');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('nilai.nilai_akhir',compact('dosen'));
     }
     public function login()
     {
@@ -53,7 +70,11 @@ class Mah extends Controller
     }
     public function detail_inputNilai($id_kelompok)
     {
-        return view('nilai.detail_inputNilai',compact('id_kelompok'));
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('nilai.detail_inputNilai',compact('id_kelompok','dosen'));
     }
     public function edit_profil()
     {
@@ -61,7 +82,11 @@ class Mah extends Controller
     }
     public function list_kegiatanHarian()
     {
-        return view('logbook.list_kegiatanHarian');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+                            ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+                            ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+                            ->first();
+        return view('logbook.list_kegiatanHarian',compact('dosen'));
     }
     //  public function list_kegiatan()
     // {
@@ -73,18 +98,33 @@ class Mah extends Controller
     }
     public function list_nilaiAkhir()
     {
-        return view('nilai.list_nilaiAkhir');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('nilai.list_nilaiAkhir',compact('dosen'));
     }
     public function list_daftarNilaiAkhir()
     {
-        return view('nilai.list_daftarNilaiAkhir');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('nilai.list_daftarNilaiAkhir',compact('dosen'));
     }
     public function logout()
     {
         return view('login.login');
     }
 
-   
+    public function list_kegiatan($id_kelompok)
+    {
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('logbook.list_kegiatan',compact('id_kelompok','dosen'));
+    }
 
 
 }

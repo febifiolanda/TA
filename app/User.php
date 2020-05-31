@@ -51,4 +51,7 @@ class User extends Authenticatable
     public function mahasiswa(){
         return $this->hasOne(Dosen::class,'id_users');
     }
+    public function dosen(){
+        return $this->hasOne(Dosen::class,'id_users');
+    }
 }

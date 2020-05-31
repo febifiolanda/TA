@@ -25,9 +25,10 @@ class ProfileController extends Controller
     // }
     public function index()
     {
+        //dd(\Auth::user());
         $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
                             ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-                            ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+                            ->select('dosen.id_dosen', 'dosen.id_users','dosen.foto','users.id_users', 'dosen.nama', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
                             ->first();
         return view('profile.profile', compact('dosen'));
     }
@@ -79,7 +80,8 @@ class ProfileController extends Controller
         $file = $request->file('foto');
 
         $extension = strtolower($file->getClientOriginalExtension());
-        $filename = $dosen->nama . '.' . $extension;
+        // $filename = $dosen->nama . '.' . $extension;
+        $filename = "PhotoProfile-".$dosen->id_users.".".$file->getClientOriginalExtension();
         Storage::put('images/users/' . $filename, File::get($file));
         $file_server = Storage::get('images/users/' . $filename);
         // $file_server = Storage::get('public/uploads/avatar/' . $filename);
