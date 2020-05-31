@@ -32,6 +32,7 @@
               <table id="table-bukuharian" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>id</th>
                   <th>No</th>
                   <th>Nama Mahasiswa</th>
                   <th>NIM</th>
@@ -39,7 +40,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <!-- <tr>
                   <td>1</td>
                   <td>Dear nasyita</td>
                   <td class="text-center py-0 align-middle">
@@ -56,7 +57,7 @@
                         <a href="/list_kegiatan" class="btn btn-info"><i class="fas fa-list"></i></a>
                       </div>
                     </td>
-                </tr>
+                </tr> -->
                 </tbody>
               </table>
             </div>
@@ -99,6 +100,7 @@
         },
         columns: [
             { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
+            { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
             { data: 'mahasiswa.nama', name:'mahasiswa.nama', visible:true},
             { data: 'mahasiswa.nim', name:'mahasiswa.nim', visible:true},
             { data: 'action', name:'action', visible:true},

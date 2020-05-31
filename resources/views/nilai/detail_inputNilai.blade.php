@@ -5,8 +5,8 @@
     <section class="content-header">
     </section>
     <section class="content">
-      <div class="row">
-        <div class="col-12">
+      <div class="row justify-content-center">
+        <div class="col-10">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Detail Info</h3>
@@ -47,7 +47,7 @@
                     </div>
                   </div>
                 </div>
-                    <a href="/detail_nilai" class="btn btn-success float-right btn-sm"><i class="fas fa-plus">&emsp; Input Nilai</i></a> <br><br>
+                    <a href="/detail_nilai" class="col-3 btn btn-success float-right btn-sm"><i class="fas fa-plus">&emsp; Input Nilai</i></a> <br><br>
                 </br>
               
                 
@@ -78,7 +78,7 @@
         dataType: "json",
         success: function(data){
           console.log(data);
-          $('#kelompok').text(data.nama_kelompok);
+           $('#kelompok').text(data.nama_kelompok);
           $('#nama_dosen').text(data.dosen.nama);
           $('#nama_instansi').text(data.dosen.instansi.nama);
           $('#lokasi_instansi').text(data.dosen.instansi.alamat);
