@@ -24,19 +24,6 @@
 				<form  method="post" enctype="multipart/form-data" action="#">
 				{{ csrf_field() }}
 				{{ method_field('PUT') }}
-					<div class="box-body">
-						<div class="row">
-							<div class="col-md-12">         
-							<label>CV</label>                       
-								<div class="input-group input-group">
-									<input type="file" class="form-control required" id="cv" name="cv">
-									<span class="input-group-append">
-										<button type="button" class="btn btn-info btn-flat">Save</button>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
 				</form>	
 				</div>  
 			</div>
@@ -45,7 +32,7 @@
 
 		<div class="col-12">
 			<div class="card">
-			<form  method="post" enctype="multipart/form-data" action="{{route('profil.update', $dosen->id_dosen)}}">
+			<form  method="post" enctype="multipart/form-data" action="{{url('/profile/update_profil', $dosen->id_dosen)}}">
 			{{ csrf_field() }}
 				<div class="card-body">
 					<div class="card-body card-primary  table-responsive p-0"></br>
