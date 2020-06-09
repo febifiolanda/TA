@@ -9,25 +9,14 @@
         <div class="col-10">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Detail Info</h3>
+              <h2 class="card-title">Detail Info Penilaian</h2>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <h4 id="kelompok">kelompok</h4><br>
+                <h4 id="kelompok"></h4><br>
                  <div class="row">
                     <div class="col-2"><b class="badge badge-info">Nama Dosen</b></div>
                     <div class="col-3" id="nama_dosen"></div>
-                  </div>
-                  <div class="row">
-                    <div class="col-2"><b class="badge badge-info">Instansi</b>
-                    </div>
-                    <div class="col-3" id="nama_instansi">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-2"><b class="badge badge-info">Lokasi</b>
-                    </div>
-                    <div class="col-3" id="lokasi_instansi"></div>
                   </div>
                   <div class="row">
                     <div class="col-2"><b class="badge badge-info">Periode</b>
@@ -45,6 +34,17 @@
                     </div>
                     <div class="col-3" id="tanggal_selesai">
                     </div>
+                  </div>
+                    <div class="row">
+                    <div class="col-2"><b class="badge badge-info">Instansi</b>
+                    </div>
+                    <div class="col-3" id="nama_instansi">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2"><b class="badge badge-info">Lokasi</b>
+                    </div>
+                    <div class="col-3" id="lokasi_instansi"></div>
                   </div>
                 </div>
                     <a href="/detail_nilai" class="col-3 btn btn-success float-right btn-sm"><i class="fas fa-plus">&emsp; Input Nilai</i></a> <br><br>
@@ -78,13 +78,13 @@
         dataType: "json",
         success: function(data){
           console.log(data);
-           $('#kelompok').text(data.nama_kelompok);
+          $('#kelompok').text(data.nama_kelompok);
           $('#nama_dosen').text(data.dosen.nama);
-          $('#nama_instansi').text(data.dosen.instansi.nama);
-          $('#lokasi_instansi').text(data.dosen.instansi.alamat);
           $('#tahun_periode').text(data.periode.tahun_periode);
           $('#tanggal_mulai').text(data.periode.tgl_mulai);
           $('#tanggal_selesai').text(data.periode.tgl_selesai);
+          $('#nama_instansi').text(data.nama);
+          $('#lokasi_instansi').text(data.alamat);
 
         },
         error: function(error){

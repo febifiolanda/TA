@@ -44,7 +44,7 @@ class BukuHarianController extends Controller
     }
 
     public function getDataMahasiswa()
-    {
+    {   
         $data = Group::where('id_dosen',1)->first()
                 ->detailGroup()->with('mahasiswa')
                 ->get();

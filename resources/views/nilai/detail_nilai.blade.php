@@ -111,141 +111,49 @@
 									</div>
 								</div>
 							</div>
-              <!-- <p> daftar isi </p>  -->
-              <div class="row">
-								<div class="col-md-3">                                
-									<div class="form-group text-center">
-									<input style="text-align:center" type="text" class="form-control required" id="nama_mahasiswa" value="Marsekal Rama">
-
-									</div>
-								</div>
-							
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
-									</div>
-								</div>
-							
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-									<span class="badge badge-success">29 </span>
-									</div>
-								</div>	
-							</div>
-				<!-- siswa ke-2 -->
-				<div class="row">
-								<div class="col-md-3">                                
-									<div class="form-group text-center">
-									<input style="text-align:center" type="text" class="form-control required" id="nama_mahasiswa" value="Nofa Dwi Adelia">
-
-									</div>
-								</div>
-							
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
-									</div>
-								</div>
-							
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
-									</div>
-								</div>
-								<div class="col-md">
-									<div class="form-group text-center">
-									<span class="badge badge-success">29 </span>
-									</div>
-								</div>	
-							</div>
-			<!-- siswa ke-3 -->
+			<!-- siswa ke-1 -->
 			<div class="row">
 								<div class="col-md-3">                                
-									<div class="form-group text-center">
-									<input style="text-align:center" type="text" class="form-control required" id="nama_mahasiswa" value="Febi Fiolanda">
+									<div class="form-group text-center" id="form-penilaian">
+									<input style="text-align:center" type="text" class="form-control required" id="nama_mahasiswa" value="Nama Mahasiswa">
 
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="3">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kebersamaan" name="kebersamaan" value="0">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="0">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="0">
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="5">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="keaktifan" name="keaktifan" value="0">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="5">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="skill" name="skill" value="0">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="4">
+										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="sikap" value="0">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-									<span class="badge badge-success">29 </span>
+									<span class="badge badge-success" id="id_total" value="0"> </span>
 									</div>
 								</div>	
 							</div>
@@ -268,7 +176,7 @@
             <div class="float-sm-right">
         <div class="box-footer">
           <a href="#" onclick="goBack()" type="button" class="btn btn-primary" >Kembali</a>
-          <input type="submit" class="btn btn-primary pull-right" value="Simpan Nilai" />
+          <input type="submit" class="btn btn-primary pull-right" id="submit" value="Simpan Nilai" />
         </div>
         </div>
         </div>
@@ -297,4 +205,39 @@
     $("#example1").DataTable();
   });
 </script>
+<script type="text/javascript">
+// $(document).ready(function(){    
+//     $(".tambahbtn").on('click', function(){
+//         $('#modal-lg').modal('show');
+//         $tr = $(this).closest('tr');
+//         var data = $tr.children("td").map(function(){
+//           return $(this).text();
+//         }).get();
+//         console.log(data);
+//         // $('#id_dosen').val(data[2]);
+//     });
+  $('#form-penilaian').on('submit', function(e){
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+        // headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+        url: "/api/lowongan",
+        cache:false,
+        dataType: "json",
+        data: $('#tambahlowongan').serialize(),
+        success: function(data){
+            console.log(data);
+            toastr.options.closeButton = true;
+            toastr.options.closeMethod = 'fadeOut';
+            toastr.options.closeDuration = 100;
+            toastr.success(data.message);
+            location.reload();
+        },
+        error: function(error){
+          console.log(error);
+        }
+    });
+  });
+</script>
+
 @endsection

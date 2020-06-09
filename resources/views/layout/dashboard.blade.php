@@ -10,12 +10,20 @@
     <section class="content">
       <div class="row">
         <div class="col-md-12 text-center"> 
-                <p><h2>Periode PKL <strong>2020</strong></h2><i class="text-muted">24 juni 2020</i></p>
+        @if (!empty($periode))
+                <p><h2>Periode PKL <strong>{{$periode->tahun_periode}}</strong></h2><i class="text-muted">{{$date}}</i></p>
+              @else
+                <p><h2>Periode KP <strong>tidak aktif</strong></h2></p>
+              @endif
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-md-offset-3 text-center">
                             <div class="alert alert-success alert-dismissible">
-                                <i class="icon fas fa-calendar"></i> Saat ini adalah periode PKL.
-                                <h3><b>2020</b> - <b>2021</b></h3>
+                            @if (!empty($periode))
+                              <i class="icon fas fa-calendar"></i> Saat ini adalah periode KP.
+                              <h3><b>{{Carbon\Carbon::parse($periode->tgl_mulai)->translatedFormat('d F Y')}}</b> - <b>{{Carbon\Carbon::parse($periode->tgl_selesai)->translatedFormat('d F Y')}}</b></h3>
+                            @else
+                            <i class="icon fas fa-calendar"></i> Saat ini tidak ada periode KP yang aktif .
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -26,8 +34,8 @@
             <div class="col-lg-3 col-6">
               <!-- small box -->
                 <div class="small-box bg-info">
-                  <div class="inner">
-                  <h3>12<sup style="font-size: 20px"> Kelompok</sup></h3>
+                  <div class="inner" id="kelompokcount">
+                  <!-- <h3>12<sup style="font-size: 20px"> Kelompok</sup></h3> -->
                   <p>Status sedang <b>PKL</b></p>
                   </div>
                 <div class="icon">
@@ -40,33 +48,33 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>4<sup style="font-size: 20px"> Kelompok</sup></h3>
-                  <p>Telah dinilai oleh <b>Instansi</b></p>
+                  <h3><sup style="font-size: 20px">Profile</sup></h3>
+                  <p>Dosen</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="/" class="small-box-footer">Cek List Kelompok <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="/profile" class="small-box-footer">Cek profile <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
                   <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>2<sup style="font-size: 20px"> Kelompok</sup></h3>
-                  <p>Total Buku Harian</p>
+                  <h3><sup style="font-size: 20px"> Cek Buku Harian</sup></h3>
+                  <p>mahasiswa</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-edit"></i>
                 </div>
-                <a href="/list_kegiatanHarian" class="small-box-footer">Cek List Buku Harian  <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="/list_kegiatanHarian" class="small-box-footer">Cek list buku harian  <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
                   <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>2<sup style="font-size: 20px"> Kelompok</sup></h3>
+                <div class="inner" id="laporanCount"> 
+                  <!-- <h3>2<sup style="font-size: 20px">Kelompok</sup></h3> -->
                   <p>Laporan Masuk</p>
                 </div>
                 <div class="icon">
@@ -87,6 +95,32 @@
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script>
+  
+  $(document).ready(function(){
+    $.ajax({
+      type: 'GET',
+      url: '/api/kelompokcount/',
+      dataType: 'JSON',
+      success: function (response) {
+        var kel = "<h3>"+response.kelompok+"<sup style='font-size: 20px'>kelompok</sup></h3>"+
+        "";
+        $("#kelompokcount").append(kel);
+      }
+    });
+    $.ajax({
+      type: 'GET',
+      url: '/api/laporancount/',
+      dataType: 'JSON',
+      success: function (response) {
+        var kel2 = "<h3>"+response.kelompok+"<sup style='font-size: 20px'>Kelompok</sup></h3>"+
+        "<p></p>";
+        $("#laporanCount").append(kel2);
+      }
+    });
+  });
+</script>
+
 <!-- page script -->
 <!-- script Api dashboard -->
 <!-- <script type="text/javascript">

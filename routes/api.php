@@ -8,6 +8,8 @@ use App\Laporan;
 use App\Periode;
 use App\DaftarNilaiAkhir;
 use App\Group;
+use App\Users;
+use App\Dashboard;
 use App\listnilaiakhir;
 
 /*
@@ -42,7 +44,8 @@ use App\listnilaiakhir;
     Route::apiResource('listdaftarnilaiakhir','ListDaftarNilaiAkhirController');
     Route::apiResource('listnilaiakhir','ListNilaiAkhirController');
    
-   
+   Route::get('/kelompokcount', 'DashboardController@kelompokCount');
+   Route::get('/laporancount', 'DashboardController@laporanCount');
     
 
     Route::post('login', 'UserController@login');

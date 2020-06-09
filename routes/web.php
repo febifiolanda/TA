@@ -46,6 +46,7 @@ Route::get('/acckegiatan/{id}/{tipe}', 'BukuHarianController@acckegiatan')->name
 Route::get('/post/add/', 'ProfileController@add')->name('post.add');
 Route::post('/profile/{id}', 'ProfileController@updateAvatar')->name('upload');
 
+//buku harian
 Route::get('/list_kegiatan/{id_mahasiswa}', 'BukuHarianController@index')->name('bukuharian.index');
 Route::resource('company','CompanyController');
 Route::resource('group','GroupController');
@@ -65,7 +66,11 @@ Route::group(['prefix' => '/table'], function () {
     Route::get('/data-detail', 'ListNilaiAkhirController@detailNilai');
 });
 
-
+Route::prefix('dosen')->group(function () {
+    Route::get('/', 'DashboardController@indexadmin');
+    // Route::get('/dashboard', 'Auth\LoginController@dashboard');
+    Route::get('/dasboard', 'DashboardController@indexadmin');
+});
 
 Auth::routes();
 

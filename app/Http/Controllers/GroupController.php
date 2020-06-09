@@ -29,7 +29,7 @@ class GroupController extends Controller
     }
     public function getData()
     {
-        $data = Group::all();
+        $data = Group::where('tahap', 'diterima')->get();
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){

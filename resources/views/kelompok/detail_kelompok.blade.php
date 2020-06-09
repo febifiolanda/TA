@@ -33,7 +33,7 @@
                           <div class="card-header p-2">
                           <ul class="nav nav-pills">
                                 <!-- tab-pane -->
-                              <li class="nav-item" class="float-center"><a class="nav-link" href="#Kelompok" data-toggle="tab">Kelompok</a></li>
+                              <li class="nav-item" class="float-center"><a class="nav-link" href="/" data-toggle="tab">Kelompok</a></li>
                           </ul>
                       </div>
                       </div>

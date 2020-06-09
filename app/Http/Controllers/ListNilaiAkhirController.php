@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Periode;
+use App\Magang;
 use App\Dosen;
 use App\Mahasiswa;
 use App\Instansi;
@@ -131,7 +132,10 @@ class ListNilaiAkhirController extends Controller
     }
 
     public function show($id_kelompok){
-        $kelompok = Group::where('id_kelompok',$id_kelompok)->with('dosen.instansi','periode')
+        $kelompok = Group::where('kelompok.id_kelompok',$id_kelompok)
+        ->with('dosen','periode')
+        ->join('magang', 'magang.id_kelompok','=','kelompok.id_kelompok')
+        ->join('instansi','instansi.id_instansi','=','magang.id_instansi')
         ->first();
         // $applyNilai =DB::table('kelompok')
         // ->join('periode', 'periode.id_periode', '=', 'kelompok.id_periode')

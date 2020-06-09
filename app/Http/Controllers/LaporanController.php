@@ -34,7 +34,8 @@ class LaporanController extends Controller
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){
-            $btn = '<a class="btn btn-primary view-pdf" href="marsekal-rama.net/CV-Rama.pdf"></a>';
+            // $btn = '<a href="'.$row->berkas.'" class="btn btn-info"><i class="fas fa-list"></i></a>';
+            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->berkas.'" data-original-title="Berkas" class="berkas btn btn-primary btn-sm lihatBerkas">Berkas</a>';
             return $btn;
         })
         ->addColumn('tgl_upload', function($row){

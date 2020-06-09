@@ -15,10 +15,10 @@
               <table id="table-laporan" class="table table-bordered table-striped ">
                 <thead>
                 <tr>
+                      <th>id</th>
                       <th>No</th>
                       <th>Periode</th>
                       <th>Kelompok</th>
-                      <th>Status</th>
 					            <th>Judul</th>
 					            <th>Laporan</th>
 					            <th>Tanggal Upload</th>
@@ -53,21 +53,21 @@
 /*
 * Here is how you use it
 */
-$(function(){    
-    $('.view-pdf').on('click',function(){
-        var pdf_link = $(this).attr('href');
-        var iframe = '<div class="iframe-container"><iframe src="'+pdf_link+'"></iframe></div>'
-        $.createModal({
-        title:'Laporan Akhir',
-        message: iframe,
-        closeButton:true,
-        scrollable:false
-        });
-        return false;        
-    });    
-})
+// $(function(){    
+//     $('.view-pdf').on('click',function(){
+//         var pdf_link = $(this).attr('href');
+//         var iframe = '<div class="iframe-container"><iframe src="'+pdf_link+'"></iframe></div>'
+//         $.createModal({
+//         title:'Laporan Akhir',
+//         message: iframe,
+//         closeButton:true,
+//         scrollable:false
+//         });
+//         return false;        
+//     });    
+// })
 </script>
-<script>
+<script type="text/javascript">
   var tableLaporan;
   $(document).ready(function(){
     tableLaporan = $('#table-laporan').DataTable({
@@ -85,15 +85,34 @@ $(function(){
         },
         columns: [
             { data: 'id_laporan', name:'id_laporan', visible:false},
+            { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
             { data: 'group.periode.tahun_periode', name:'group.periode.tahun_periode', visible:true},
             { data: 'group.nama_kelompok', name:'group.nama_kelompok', visible:true},
-            { data: 'group.status', name:'group.status', visible:true},
             { data: 'judul', name:'judul', visible:true},
             { data: 'action', name:'action', visible:true},
             { data: 'tgl_upload', name:'tgl_upload', visible:true},
         ],
       });
   });
+
+
+
+$('body').on('click', '.lihatBerkas', function lihatBerkas() {
+
+var berkas = $(this).data('id');
+
+// var pdf_link = $(this).attr('href');
+        var iframe = '<div class="iframe-container"><iframe src="'+berkas+'"></iframe></div>'
+        $.createModal({
+        title:'Laporan Akhir',
+        message: iframe,
+        closeButton:true,
+        scrollable:false
+        });
+        return false;  
+
+});
+
 </script>
 
 @endsection
