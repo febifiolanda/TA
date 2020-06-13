@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dosen;
+use DB;
+use App\Instansi;
 
 class Mah extends Controller
 {
@@ -128,6 +130,17 @@ class Mah extends Controller
         ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
         return view('logbook.list_kegiatan',compact('id_kelompok','dosen'));
+    }
+    public function detail_kelompok_baru($id_kelompok)
+    {
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        $instansi = DB::table('magang')->where('magang.id_kelompok',$id_kelompok)
+        ->join('instansi','instansi.id_instansi','magang.id_instansi')
+        ->first();
+        return view('kelompok.detail_kelompok_baru',compact('dosen','id_kelompok','instansi'));
     }
 
 

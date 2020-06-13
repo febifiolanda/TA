@@ -19,7 +19,8 @@
                   <th>Datang</th>
                   <th>pulang</th>
                   <th>kegiatan</th>
-                  <th>Status</th>
+                  <!-- <th>Status</th> -->
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>            
@@ -69,80 +70,5 @@
         ],
       });
   });
-
-  // DECLINE
-  // $(document).on('click','.declinebtn', function(e){
-  //       e.preventDefault();
-
-  //       var persetujuan = 'ditolak';
-  //       id_kelompok = $(this).attr('id');
-
-  //       $.ajax({
-  //           type: "POST",
-  //           headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-  //           url: "/api/admin/tolak_kelompok/",
-  //           cache:false,
-  //           dataType: "json",
-  //           data: {'persetujuan': persetujuan, 'id_kelompok': id_kelompok},
-  //           success: function(data){
-  //             toastr.options.closeButton = true;
-  //             toastr.options.closeMethod = 'fadeOut';
-  //             toastr.options.closeDuration = 100;
-  //             toastr.success(data.message);
-  //             $('#persetujuan_data').DataTable().ajax.reload();
-  //           },
-  //           error: function(error){
-  //             console.log(error);
-  //           }
-  //       });
-  //   });
-    
-  // $(document).on('click','.accbtn', function(e){
-  //   e.preventDefault();
-  //   id_daftar_lowongan = $(this).attr('id');
-  //   var status = $('#statusacc').val();
-  //   $.ajax({
-  //       type: "POST",
-  //       headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-  //       url: "/api/admin/persetujuanlowongan/",
-  //       cache:false,
-  //       dataType: "json",
-  //       data: {'id_daftar_lowongan': id_daftar_lowongan, 'status': status},
-  //       success: function(data){
-  //         toastr.options.closeButton = true;
-  //         toastr.options.closeMethod = 'fadeOut';
-  //         toastr.options.closeDuration = 100;
-  //         toastr.success(data.message);
-  //         // $('#persetujuan_data').DataTable().ajax.reload();
-  //       },
-  //       error: function(error){
-  //         console.log(error);
-  //       }
-  //   });
-  // });
-
-  // $(document).on('click','.declinebtn', function(e){
-  //   e.preventDefault();
-  //   id_daftar_lowongan = $(this).attr('id');
-  //   var statusdecline = $('#statusdecline').val();
-  //   $.ajax({
-  //       type: "POST",
-  //       headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-  //       url: "/api/admin/persetujuanlowongan/",
-  //       cache:false,
-  //       dataType: "json",
-  //       data: {'id_daftar_lowongan': id_daftar_lowongan, 'status': statusdecline},
-  //       success: function(data){
-  //         toastr.options.closeButton = true;
-  //         toastr.options.closeMethod = 'fadeOut';
-  //         toastr.options.closeDuration = 100;
-  //         toastr.success(data.message);
-  //         // $('#persetujuan_data').DataTable().ajax.reload();
-  //       },
-  //       error: function(error){
-  //         console.log(error);
-  //       }
-  //   });
-  // });
 </script>
 @endsection

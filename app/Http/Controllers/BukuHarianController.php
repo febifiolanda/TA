@@ -47,6 +47,10 @@ class BukuHarianController extends Controller
     {   
         $data = Group::where('id_dosen',1)->first()
                 ->detailGroup()->with('mahasiswa')
+                ->where(function($q) {
+                    $q->where('kelompok_detail.status_join', 'create')
+                    ->orWhere('kelompok_detail.status_join', 'diterima');
+                })
                 ->get();
         return datatables()->of($data)
         ->addColumn('action', function($row){

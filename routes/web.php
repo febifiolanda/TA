@@ -25,6 +25,7 @@ Route::get('/laporan', 'Mah@laporan')->name('/laporan');
 Route::get('/nilai_akhir', 'Mah@nilai_akhir')->name('/nilai_akhir');
 Route::get('/login', 'Mah@login')->name('/login');
 Route::get('/logout', 'Mah@logout')->name('/logout');
+Route::get('/detail_kelompok_baru/{id_kelompok}', 'Mah@detail_kelompok_baru')->name('/detail_kelompok_baru');
 Route::get('/detail_inputNilai/{id_kelompok}', 'ListNilaiAkhirController@show')->name('/detail_inputNilai');
 
 Route::get('/profile', 'profileController@index')->name('/profile');
@@ -64,6 +65,8 @@ Route::group(['prefix' => '/table'], function () {
     Route::get('/data-groupNilaiAkhir', 'ListNilaiAkhirController@getData');
     Route::get('/data-daftarNilaiAkhir', 'ListDaftarNilaiAkhirController@getData');
     Route::get('/data-detail', 'ListNilaiAkhirController@detailNilai');
+    Route::get('/data-detailKelompok/{id_kelompok}', 'GroupController@detailkelompok');
+    Route::get('/data-nilaiAkhir/{id_mahasiswa}', 'NilaiAkhirController@getnilai');
 });
 
 Route::prefix('dosen')->group(function () {

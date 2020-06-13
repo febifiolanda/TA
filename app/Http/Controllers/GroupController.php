@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Group;
 use App\Dosen;
+use DB;
 use App\DetailGroup;
 
 
@@ -33,12 +34,36 @@ class GroupController extends Controller
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){
-            $btn = '<a href="'.route('group.show',$row->id_kelompok).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
+            $btn = '<a href="'.url('/detail_kelompok_baru',$row->id_kelompok).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
             return $btn;
         })
         ->addIndexColumn()
         ->rawColumns(['action'])
         ->make(true);
+    }
+
+    public function detailkelompok($id_kelompok){
+
+        $data = DB::table("magang")->where('magang.id_kelompok',$id_kelompok)
+        ->join('kelompok_detail','kelompok_detail.id_kelompok','magang.id_kelompok')
+        ->where(function($q) {
+            $q->where('kelompok_detail.status_join', 'create')
+            ->orWhere('kelompok_detail.status_join', 'diterima');
+        })
+        ->join('mahasiswa','mahasiswa.id_mahasiswa','kelompok_detail.id_mahasiswa')
+        // ->addIndexColumn()
+        // ->make(true)
+        ->get();
+
+        $instansi = DB::table('magang')->where('magang.id_kelompok',$id_kelompok)
+        ->join('instansi','instansi.id_instansi','magang.id_instansi')
+        ->first();
+
+        return response()->json([
+            'status'=>'success',
+            'instansi'=> $instansi,
+            'data' => $data
+        ],200);
     }
 
     /**
@@ -74,7 +99,7 @@ class GroupController extends Controller
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
         ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
-        return view('kelompok.detail_kelompok',compact('dosen'));
+        return view('kelompok.detail_kelompok_baru',compact('dosen'));
     }
 
    

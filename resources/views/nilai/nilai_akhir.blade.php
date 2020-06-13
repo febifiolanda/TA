@@ -59,7 +59,7 @@
       <br>
         <div class="row justify-content-center">
                   <div class="col-md-12">
-                  <table class="table table-bordered table-striped">
+                  <table class="table table-bordered table-striped" id="table-nilaiakhir">
                     <tr>
                       <th>NIM</th>
                       <th>Nama Mahasiswa</th>
@@ -105,6 +105,34 @@
 <script>
   $(function () {
     $("#example1").DataTable();
+  });
+</script>
+<script>
+  var tableGroup;
+  // var id_mahasiswa 
+  $(document).ready(function(){
+    tableGroup = $('#table-nilaiakhir').DataTable({
+        processing	: true,
+        language: {
+                    search: "INPUT",
+                    searchPlaceholder: "Search records"
+                  },
+        // dom 		: "<fl<t>ip>",
+  			serverSide	: true,
+  			stateSave: true,
+        ajax		: {
+            url: "{{ url('table/data-nilaiAkhir/'.$id_mahasiswa) }}",
+            type: "GET",
+        },
+        columns: [
+            { data: 'id_nilai', name:'id_nilai', visible:false},
+            { data: 'nilai_teman', name:'nilai_teman', visible:true},
+            { data: 'waktu_mulai', name:'waktu_mulai', visible:true},
+            { data: 'waktu_selesai', name:'waktu_selesai', visible:true},
+            { data: 'kegiatan', name:'kegiatan', visible:true},
+            { data: 'action', name:'action', visible:true},
+        ],
+      });
   });
 </script>
 @endsection
