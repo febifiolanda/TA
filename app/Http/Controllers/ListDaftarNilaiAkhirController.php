@@ -23,11 +23,12 @@ class ListDaftarNilaiAkhirController extends Controller
     }
     public function getData()
     {
+        //bagian ini
         $data = Mahasiswa::with('periode')->get();
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){
-            $btn = ' <a href="/nilai_akhir" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+            $btn = ' <a href="'.route('/nilai_akhir',$row->id_mahasiswa).'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
             return $btn;
         })
         ->addIndexColumn()

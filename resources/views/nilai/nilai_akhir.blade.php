@@ -60,26 +60,55 @@
         <div class="row justify-content-center">
                   <div class="col-md-12">
                   <table class="table table-bordered table-striped" id="table-nilaiakhir">
-                    <tr>
-                      <th>NIM</th>
-                      <th>Nama Mahasiswa</th>
-                      <th>Status PKL</th>
-                      <th>Nilai Instansi</th>
-                      <th>Nilai Dosen</th>
-                      <th>Nilai Tim Penguji</th>
-                      <th>Nilai Kelompok</th>
-                    </tr>
-                      <tr>
-                      <td>17/386088/SV/09474</td>
-                      <td>marsekal rama</td>
-                      <td>
-						<span class='label label-default'>Selesai Magang</span>					  </td>
-                      <td>1.3</td>
-                      <td>1.06</td>
-                      <td>1.25</td>
-                      <td>2.0</td>
-                    </tr>
-                                      </table>
+                  <thead>
+                            <tr>
+                            <th>Nama Mahasiswa</th>
+                            <th>NIM</th>
+                            <th>Nilai Teman</th>
+                            <th>Nilai Pembimbing</th>
+                            <th>Nilai Penguji</th>
+                            <th>Nilai Instansi</th>
+                            <th>Nilai Akhir</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          @if (!empty($mahasiswa))
+                              <th>{{$mahasiswa->nama}}</th>
+                              @else
+                              <th></th>
+                          @endif
+                          @if (!empty($mahasiswa))
+                              <th>{{$mahasiswa->nim}}</th>
+                              @else
+                              <th></th>
+                          @endif
+                          @if (!empty($resultTeman2))
+                              <th>{{$resultTeman2}}</th>
+                              @else
+                              <th></th>
+                          @endif
+                          @if (!empty($resultDospem2))
+                              <th>{{$resultDospem2}}</th>
+                              @else
+                              <th></th>
+                          @endif 
+                          @if (!empty($resultPenguji2))
+                              <th>{{$resultPenguji2}}</th>
+                              @else
+                              <th></th>
+                          @endif 
+                          @if (!empty($resultInstansi2))
+                              <th>{{$resultInstansi2}}</th>
+                              @else
+                              <th></th>
+                          @endif
+                          @if (!empty($finalResult))
+                              <th>{{$finalResult}}</th>
+                              @else
+                              <th></th>
+                          @endif 
+                          </tbody>
+                        </table>
                   
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
@@ -102,14 +131,8 @@
 <script src="../../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $("#example1").DataTable();
-  });
-</script>
-<script>
-  var tableGroup;
-  // var id_mahasiswa 
+<!-- <script  type="text/javascript">
+ var tableGroup;
   $(document).ready(function(){
     tableGroup = $('#table-nilaiakhir').DataTable({
         processing	: true,
@@ -125,14 +148,11 @@
             type: "GET",
         },
         columns: [
-            { data: 'id_nilai', name:'id_nilai', visible:false},
-            { data: 'nilai_teman', name:'nilai_teman', visible:true},
-            { data: 'waktu_mulai', name:'waktu_mulai', visible:true},
-            { data: 'waktu_selesai', name:'waktu_selesai', visible:true},
-            { data: 'kegiatan', name:'kegiatan', visible:true},
-            { data: 'action', name:'action', visible:true},
+            { mahasiswa: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
+            { mahasiswa: 'nama', name:'nama', visible:true},
+            
         ],
       });
   });
-</script>
+</script> -->
 @endsection

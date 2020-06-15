@@ -35,7 +35,7 @@
                               <th>Id</th>
                               <th>No</th>
                               <th>Nama Kelompok</th>
-                              <th>Periode</th>
+                              <th>Angkatan</th>
                               <th>Aksi</th>
                             </tr>
                           </thead>
@@ -77,10 +77,10 @@
             type: "GET",
         },
         columns: [
-            { data: 'id_kelompok', name:'id_kelompok', visible:false},
+            { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
             { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
-            { data: 'nama_kelompok', name:'nama_kelompok', visible:true},
-            { data: 'periode.tahun_periode', name:'periode.tahun_periode', visible:true},
+            { data: 'mahasiswa.nama', name:'mahasiswa.nama', visible:true},
+            { data: 'mahasiswa.angkatan', name:'mahasiswa.angkatan', visible:true},
             { data: 'action', name:'action', visible:true},
         ],
       });

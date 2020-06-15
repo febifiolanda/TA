@@ -55,10 +55,10 @@
 							</a> <br><br>
                  		 </div> -->
                 	</form>
-					<form role="form" id="editPenilaian" >
+					<form role="form" id="editPenilaian1" >
 					@csrf
-					<input  type="hidden" name="id_kelompok_penilai" value="3">
-					<input  type="hidden" name="id_mahasiswa" value=" {{ Request::segment(2) }}">
+					<input  type="hidden" name="id_kelompok_penilai" value="4">
+                    <input  type="hidden" name="id_mahasiswa" value=" {{ Request::segment(2) }}">
 						<div class="row">
 								<div class="col-md-3">                                
 									<div class="form-group text-center">
@@ -108,7 +108,6 @@
 										<!-- <input type="number"  class="form-control required" id="sikap" name="sikap" value="4"> -->
 									</div>
 								</div>
-								
 							</div>
 			<!-- siswa ke-1 -->
 			<div class="row">
@@ -155,8 +154,7 @@
 										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kehadiran" name="nilai[]" value="">
 										<input style="text-align:center" type="hidden" name="id_aspek_penilaian[]" value="7">
 									</div>
-								</div>
-									
+								</div>	
 							</div>
 
           <div class="row">
@@ -217,7 +215,7 @@
 //         console.log(data);
 //         // $('#id_dosen').val(data[2]);
 //     });
-  $('#editPenilaian').on('submit', function(e){
+  $('#editPenilaian1').on('submit', function(e){
     e.preventDefault();
     $.ajax({
       type: "POST",

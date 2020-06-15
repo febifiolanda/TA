@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\NilaiAkhir;
 use DB;
+use Response;
 use Illuminate\Http\Request;
 
 class NilaiAkhirController extends Controller
@@ -19,6 +20,8 @@ class NilaiAkhirController extends Controller
 
     public function getnilai($id_mahasiswa){
 
+        //ini caranya disamain kayak di ListDaftarNilaiAkhirController
+        $mahasiswa = DB::table('mahasiswa')->where('id_mahasiswa', $id_mahasiswa)->first();
     
         $summaryTeman = NilaiAkhir::where('id_mahasiswa',$id_mahasiswa)
         ->where('id_kelompok_penilai','1')
@@ -70,7 +73,11 @@ class NilaiAkhirController extends Controller
 
         $finalResult = $resultTeman2 + $resultInstansi2 + $resultPenguji2 + $resultDospem2;
 
+        $mah = json_decode($finalResult);
+
         return response()->json([
+            'id_mahasiswa' => $mahasiswa->id_mahasiswa,
+            'mahasiswa' => $mahasiswa,
             'nilai_teman' => number_format($resultTeman2, 2), 
             'bobot_teman' => $bobotTeman->bobot,
             'nilai_instansi' => number_format($resultInstansi2, 2), 
@@ -79,7 +86,8 @@ class NilaiAkhirController extends Controller
             'bobot_penguji' => $bobotPenguji->bobot,
             'nilai_dospem' => number_format($resultDospem2, 2), 
             'bobot_dospem' => $bobotDospem->bobot,
-            'nilai_akhir' => number_format($finalResult, 2)], 200);
+            'nilai_akhir' => $mah], 200);
+
     
     }
 

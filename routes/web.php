@@ -16,17 +16,21 @@ Route::get('/', function () {
 });
 Route::get('/kelompok', 'Mah@index')->name('/kelompok');
 Route::get('/detail_kelompok', 'Mah@detailkelompok')->name('/detail_kelompok');
-Route::get('/detail_nilai', 'Mah@detailnilai')->name('/detail_nilai');
 Route::get('/detail_nilai_penguji', 'Mah@nilaipenguji')->name('/detail_nilai_penguji');
 Route::get('/input_nilai', 'Mah@inputnilai_dosen')->name('/input_nilai');
 Route::get('/inputNilai_penguji', 'Mah@inputNilai_penguji')->name('/inputNilai_penguji');
 Route::get('/dashboard', 'Mah@dashboard')->name('/dashboard');
 Route::get('/laporan', 'Mah@laporan')->name('/laporan');
-Route::get('/nilai_akhir', 'Mah@nilai_akhir')->name('/nilai_akhir');
+Route::get('/nilai_akhir/{id_mahasiswa}', 'Mah@nilai_akhir')->name('/nilai_akhir');
 Route::get('/login', 'Mah@login')->name('/login');
 Route::get('/logout', 'Mah@logout')->name('/logout');
 Route::get('/detail_kelompok_baru/{id_kelompok}', 'Mah@detail_kelompok_baru')->name('/detail_kelompok_baru');
-Route::get('/detail_inputNilai/{id_kelompok}', 'ListNilaiAkhirController@show')->name('/detail_inputNilai');
+Route::get('/detail_inputNilai/{id_kelompok}', 'ListNilaiAkhirController@show')->name('detail-nilai');
+
+Route::get('/detail_nilai/{id_mahasiswa}', 'Mah@detailnilai')->name('detail-nilaimahasiswa');
+Route::get('/detail_nilai_penguji/{id_mahasiswa}', 'Mah@detailnilai')->name('/detail_nilai_penguji');
+Route::get('/detail_nilai/update_nilai', '@update')->name('/detail_nilai');
+
 
 Route::get('/profile', 'profileController@index')->name('/profile');
 Route::get('/profile/edit_profil/{id}','profileController@edit')->name('/edit_profil');
@@ -63,6 +67,7 @@ Route::group(['prefix' => '/table'], function () {
     Route::get('/data-bukuharian-mahasiswa', 'BukuHarianController@getDataMahasiswa');
     Route::get('/data-bukuharian/{id_mahasiswa}', 'BukuHarianController@getData');
     Route::get('/data-groupNilaiAkhir', 'ListNilaiAkhirController@getData');
+    Route::get('/data-groupNilaiAkhirr', 'ListNilaiAkhirController@getDataPenguji');
     Route::get('/data-daftarNilaiAkhir', 'ListDaftarNilaiAkhirController@getData');
     Route::get('/data-detail', 'ListNilaiAkhirController@detailNilai');
     Route::get('/data-detailKelompok/{id_kelompok}', 'GroupController@detailkelompok');

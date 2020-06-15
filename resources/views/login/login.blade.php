@@ -67,27 +67,38 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
- //script javascript untuk fungsi login
+ <!-- script javascript untuk fungsi login -->
 <script type="text/javascript">
-$(document).on('click','#btn-login',function(event){
-  event.preventDefault();
-  $.ajax({
+// $(document).on('click','#btn-login',function(event){
+//   event.preventDefault();
+//   $.ajax({
+//   url:'http://127.0.0.1:8000/api/login',
+//   type:'POST',
+//   data: {
+//     username :document.getElementById("etUsername").value,
+//     password :document.getElementById("etPassword").value  
+
+//    },
+// });
+// // .done(function(result){ //jika username&password sesuai database maka data diambil dan di masuk ke dashboard
+// //   console.log(result);
+// //   if(result.api_token!=null){
+// //     // redirect => dashboard
+// //     window.location.href='http://127.0.0.1:8000/dashboard?api_token='+result.api_token;
+// //   }
+// // });
+
+// });
+$(document).on('click','#btn-login',function(e){
+$.ajax({
   url:'http://127.0.0.1:8000/api/login',
   type:'POST',
   data: {
     username :document.getElementById("etUsername").value,
     password :document.getElementById("etPassword").value  
 
-  },
-})
-// .done(function(result){ //jika username&password sesuai database maka data diambil dan di masuk ke dashboard
-//   console.log(result);
-//   if(result.api_token!=null){
-//     // redirect => dashboard
-//     window.location.href='http://127.0.0.1:8000/dashboard?api_token='+result.api_token;
-//   }
-// });
-
+   },
+  });
 });
 
 

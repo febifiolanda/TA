@@ -7,6 +7,7 @@ use App\Periode;
 use App\Magang;
 use App\Dosen;
 use App\Mahasiswa;
+use App\NilaiAkhir;
 use App\Instansi;
 use App\DetailGroup;
 use DB;
@@ -28,18 +29,41 @@ class ListNilaiAkhirController extends Controller
     }
     public function getData()
     {
-        $data = Group::with('periode')->get();
-        // dd($data);
-        return datatables()->of($data)
-        ->addColumn('action', function($row){
-            $btn = ' <a href="'.route('nilaiakhir-detail',$row->id_kelompok).'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
-            return $btn;
+        $data = Group::where('id_dosen',1)->first()
+        ->detailGroup()->with('mahasiswa')
+        ->where(function($q) {
+            $q->where('kelompok_detail.status_join', 'create')
+            ->orWhere('kelompok_detail.status_join', 'diterima');
         })
-        ->addIndexColumn()
-        ->rawColumns(['action'])
-        ->make(true);
+        ->get();
+            return datatables()->of($data)
+            ->addColumn('action', function($row){
+                $btn = '<a href="'.route('detail-nilaimahasiswa',$row->id_mahasiswa).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
+                return $btn;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
+    public function getDataPenguji()
+    {
+        $data = Group::where('id_dosen',1)->first()
+        ->detailGroup()->with('mahasiswa')
+        ->where(function($q) {
+            $q->where('kelompok_detail.status_join', 'create')
+            ->orWhere('kelompok_detail.status_join', 'diterima');
+        })
+        ->get();
+            return datatables()->of($data)
+            ->addColumn('action', function($row){
+                $btn = '<a href="'.route('/detail_nilai_penguji',$row->id_mahasiswa).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
+                return $btn;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->make(true);
+    }
     public function indexAnggota()
     {
             return view('nilai.daftar_nilaiAkhir');
@@ -72,7 +96,37 @@ class ListNilaiAkhirController extends Controller
      */
     public function store(Request $request)
     {
-        //
+           // dd($request->all());
+        // // $data = $request->all();
+
+        // // dd($data);
+        // // foreach ($data['data'] as $datas) {
+        //     $row = new NilaiAkhir;
+        //     $row->fieldTable = $request->nameOnHtmlTextField;
+        //     // $row ->id_periode = $data['id_periode'];
+        //     // $row ->id_mahasiswa = $data['id_mahasiswa'];
+        //     // $row ->id_aspek_penilaian = $datas['id_aspek_penilaian'];
+        //     // $row ->id_kelompok_penilai = $datas['id_kelompok_penilai'];
+        //     // $row ->nilai= $datas['nilai'];
+        //     // $row ->created_by = $datas['created_by'];
+        //     // and so on for your all columns 
+        //     $row->save();   //at last save into db
+        // // }
+        // dd(\Auth::user());
+        $periode=Periode::where(['status'=>'open'])->first();
+        foreach($request->id_aspek_penilaian as $key => $value)
+        {
+            $model = new NilaiAkhir;
+            $model->id_aspek_penilaian = $value;
+            $model->nilai = $request->nilai[$key];
+            $model->id_periode = $periode->id_periode;
+            $model->id_kelompok_penilai=$request->id_kelompok_penilai;
+            $model->id_mahasiswa = $request->id_mahasiswa;
+            $model->isDeleted= 0;
+            $model->created_by= 123;
+            $model->save();
+        }
+        return response()->json($request->all(), 201);
     }
 
     /**
@@ -116,8 +170,14 @@ class ListNilaiAkhirController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Group $listNilaiAkhir)
-    {
-        //
+    {   
+        
+        $nilai=NilaiAkhir::find($id);
+        if(is_null($nilai)){
+            return response()->json(['messege'=>'record not found', 400]);
+        }
+        $nilai->update($request->all());
+        return response()->json($nilai, 200); 
     }
 
     /**
