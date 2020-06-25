@@ -27,4 +27,7 @@ class Dosen extends Model
     public function instansi(){
         return $this->belongsTo('App\Instansi','id_users','id_users') ;
     }
+    public function users(){
+        return $this->belongsTo('App\User', 'id_users');
+    }
 }

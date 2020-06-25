@@ -13,10 +13,10 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <!-- <form role="form">
+                <form role="form">
                   <div class="col-sm-4">
                   <p>Saring berdasarkan</p>
-                     
+                      <!-- select -->
                       <div class="form-group">
                           <select class="form-control form-control-sm">
                             <option>Periode PKL</option>
@@ -27,16 +27,15 @@
                           </select>
                        </div>
                       <button type="submit" class="btn btn-default">Filter</button> <br><br>
-                </form> -->
+                </form>
                   </div>
-                        <table id="table-list" class="table table-bordered table-striped">
+                        <table id="table-listpenguji" class="table table-bordered table-striped">
                           <thead>
                             <tr>
                               <th>Id</th>
                               <th>No</th>
                               <th>Nama Kelompok</th>
-                              <th>Nama Mahasiswa</th>
-                              <th>NIM</th>
+                              <th>Angkatan</th>
                               <th>Aksi</th>
                             </tr>
                           </thead>
@@ -64,17 +63,17 @@
 <script>
   var tableGroup;
   $(document).ready(function(){
-    tableGroup = $('#table-list').DataTable({
+    tableGroup = $('#table-listpenguji').DataTable({
         processing	: true,
         language: {
-                    search: "Search",
+                    search: "INPUT",
                     searchPlaceholder: "Search records"
                   },
         // dom 		: "<fl<t>ip>",
   			serverSide	: true,
   			stateSave: true,
         ajax		: {
-            url: "{{ url('table/data-groupNilaiAkhir') }}",
+            url: "{{ url('table/data-groupNilaiAkhirPenguji') }}",
             type: "GET",
         },
         columns: [
@@ -82,7 +81,7 @@
             { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
             { data: 'group.nama_kelompok', name:'group.nama_kelompok', visible:true},
             { data: 'mahasiswa.nama', name:'mahasiswa.nama', visible:true},
-            { data: 'mahasiswa.nim', name:'mahasiswa.nim', visible:true},
+            { data: 'mahasiswa.angkatan', name:'mahasiswa.angkatan', visible:true},
             { data: 'action', name:'action', visible:true},
         ],
       });

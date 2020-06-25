@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\BukuHarian;
 use App\Group;
 use App\Dosen;
+use DB;
 use Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -34,8 +35,8 @@ class BukuHarianController extends Controller
             return $tanggal;
         })
         ->addColumn('action', function($row){
-            $btn = '<a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'terima']).'" class="btn-sm btn-info"><i class="fas fa-check"></i></a>';
-            $btn = $btn.' <a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'tolak']).'" class="btn-sm btn-danger"><i class="fas fa-times"></i></a>';
+            $btn = '<a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'terima']).'" class="btn-sm btn-info"><i class="fas fa-pencil"></i>Terima</a>';
+            $btn = $btn.' <a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'tolak']).'" class="btn-sm btn-danger"><i class="fas fa-pencil"></i>Tolak</a>';
             return $btn;
         })
         ->addIndexColumn()
@@ -44,14 +45,27 @@ class BukuHarianController extends Controller
     }
 
     public function getDataMahasiswa()
-    {   
-        $data = Group::where('id_dosen',1)->first()
-                ->detailGroup()->with('mahasiswa')
+    {   $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+        'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 
+        'dosen.nip')
+        ->first();
+        $data = Group::where('id_dosen',$dosen->id_dosen)->first()
+                ->detailGroup()->with('mahasiswa','group')
                 ->where(function($q) {
                     $q->where('kelompok_detail.status_join', 'create')
                     ->orWhere('kelompok_detail.status_join', 'diterima');
                 })
+                ->join('magang','magang.id_kelompok','kelompok_detail.id_kelompok')
+                ->join('instansi','instansi.id_instansi','magang.id_instansi')
+                ->select('kelompok_detail.*','instansi.nama as nama_instansi')
                 ->get();
+        // $instansi = DB::table('magang')->where('magang.id_kelompok',$id_kelompok)
+        // ->join('instansi','instansi.id_instansi','magang.id_instansi')
+        // ->first();
+       
+       
         return datatables()->of($data)
         ->addColumn('action', function($row){
             $btn = '<a href="'.url('/list_kegiatan',$row->id_mahasiswa).'" class="btn btn-info"><i class="fas fa-list"></i></a>';

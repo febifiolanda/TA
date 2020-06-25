@@ -28,5 +28,7 @@ class Mahasiswa extends Model
     public function periode(){
         return $this->belongsTo('App\Periode','id_periode','id_periode') ;
     }
-    
+    public function user(){
+        return $this->hasMany('App\User','id_users','id_users') ;
+    }
 }

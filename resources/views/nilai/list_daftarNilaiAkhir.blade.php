@@ -12,11 +12,10 @@
               <h3 class="card-title">Daftar Kelompok Nilai Akhir  </h3>
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
+            <!-- <div class="card-body">
                 <form role="form">
                   <div class="col-sm-4">
                   <p>Saring berdasarkan</p>
-                      <!-- select -->
                       <div class="form-group">
                           <select class="form-control form-control-sm">
                             <option>Periode PKL</option>
@@ -28,7 +27,7 @@
                        </div>
                       <button type="submit" class="btn btn-default">Filter</button> <br><br>
                 </form>
-                  </div>
+                  </div> -->
                         <table id="table-list1" class="table table-bordered table-striped">
                           <thead>
                             <tr>

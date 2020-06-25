@@ -27,4 +27,7 @@ class Group extends Model
     public function Mahasiswa(){
         return $this->belongsTo('App\Mahasiswa','id_periode','id_periode') ;
     }
+    public function instansi(){
+        return $this->belongsTo('App\Instansi','id_periode','id_periode') ;
+    }
 }

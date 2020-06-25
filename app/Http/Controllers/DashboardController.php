@@ -21,38 +21,44 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request)
-    {
-        $user= User::where(['api_token'=>$request->api_token])->first();
+    // public function index(Request $request)
+    // {
+    //     $user= User::where(['api_token'=>$request->api_token])->first();
 
-        return response()->json([
-            'user' =>$user,
-            'code' => 200,
-        ], 200);
-    }
+    //     return response()->json([
+    //         'user' =>$user,
+    //         'code' => 200,
+    //     ], 200);
+    // }
 
     public function user()
     {
         
-        $user= Auth::user()->load('admin');
+        $user= Auth::user()->load('dosen');
 
         return response()->json([
             'user' =>$user,
             'message' => "succes",
         ]);
     }
-    public function indexadmin(){
+    public function indexsdosen(){
 
         $periode = Periode::where('status', 'open')->first();
         $date = Carbon::now()->translatedFormat('l, d F Y');
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+                            ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+                            ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+                            ->first();
 
-        return view('dashboard', compact('periode','date'));
+        return view('layout.dashboard', compact('periode','date', 'dosen'));
     }
 
     public function kelompokCount(){
         $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 
+        'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email',
+        'dosen.nip')
         ->first();
         $kelompok = Group::where('kelompok.id_dosen','=',$dosen->id_dosen)
         ->where('kelompok.tahap','=', 'diterima')
@@ -66,7 +72,9 @@ class DashboardController extends Controller
     public function laporanCount(){
         $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+        'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 
+        'dosen.nip')
         ->first();
         $kelompok = Laporan::join('kelompok','laporan.id_kelompok', 'kelompok.id_kelompok')
         ->where('kelompok.id_dosen','=',$dosen->id_dosen)

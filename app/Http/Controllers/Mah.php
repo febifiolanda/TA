@@ -17,6 +17,10 @@ class Mah extends Controller
 
     public function indexprofile()
     {
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
         return view('profile.profile');
     }
     public function detailkelompok()
@@ -30,6 +34,14 @@ class Mah extends Controller
     public function inputnilai_dosen()
     {
         return view('nilai.input_nilai');
+    }
+    public function ubahpassword()
+    {
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+                            ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+                            ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+                            ->first();
+        return view('layout.ubah_password',compact('dosen'));
     }
     public function dashboard()
     {
@@ -54,6 +66,7 @@ class Mah extends Controller
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
         ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',  'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
+       
         $mahasiswa = DB::table('mahasiswa')->where('id_mahasiswa', $id_mahasiswa)->first();
         return view('nilai.detail_nilai_penguji',compact('dosen','id_mahasiswa','mahasiswa'));
     }
@@ -176,6 +189,14 @@ class Mah extends Controller
         ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
         return view('nilai.list_nilaiAkhir',compact('dosen'));
+    }
+    public function list_nilaiAkhir_penguji()
+    {
+        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        return view('nilai.list_nilaiAkhir_penguji',compact('dosen'));
     }
     public function list_daftarNilaiAkhir()
     {

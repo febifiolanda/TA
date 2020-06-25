@@ -30,7 +30,12 @@ class GroupController extends Controller
     }
     public function getData()
     {
-        $data = Group::where('tahap', 'diterima')->get();
+        $data = Group::where('tahap', 'diterima')
+        ->join('kelompok_detail','kelompok_detail.id_kelompok','kelompok.id_kelompok')
+        ->where('kelompok_detail.status_keanggotaan','Ketua')
+        ->join('mahasiswa','mahasiswa.id_mahasiswa','kelompok_detail.id_mahasiswa')
+        ->select('mahasiswa.nama as nama_ketua','kelompok.*')
+        ->get();
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){
@@ -50,9 +55,11 @@ class GroupController extends Controller
             $q->where('kelompok_detail.status_join', 'create')
             ->orWhere('kelompok_detail.status_join', 'diterima');
         })
+        // ->groupBy('id_mahasiswa')
         ->join('mahasiswa','mahasiswa.id_mahasiswa','kelompok_detail.id_mahasiswa')
         // ->addIndexColumn()
         // ->make(true)
+
         ->get();
 
         $instansi = DB::table('magang')->where('magang.id_kelompok',$id_kelompok)

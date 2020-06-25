@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-md-12 text-center"> 
         @if (!empty($periode))
-                <p><h2>Periode PKL <strong>{{$periode->tahun_periode}}</strong></h2><i class="text-muted">{{$date}}</i></p>
+                <p><h2>Periode Kerja Praktek <strong>{{$periode->tahun_periode}}</strong></h2><i class="text-muted">{{$date}}</i></p>
               @else
                 <p><h2>Periode KP <strong>tidak aktif</strong></h2></p>
               @endif
@@ -19,7 +19,7 @@
                         <div class="col-md-6 col-md-offset-3 text-center">
                             <div class="alert alert-success alert-dismissible">
                             @if (!empty($periode))
-                              <i class="icon fas fa-calendar"></i> Saat ini adalah periode KP.
+                              <i class="icon fas fa-calendar"></i> Saat ini adalah periode Kerja Praktek .
                               <h3><b>{{Carbon\Carbon::parse($periode->tgl_mulai)->translatedFormat('d F Y')}}</b> - <b>{{Carbon\Carbon::parse($periode->tgl_selesai)->translatedFormat('d F Y')}}</b></h3>
                             @else
                             <i class="icon fas fa-calendar"></i> Saat ini tidak ada periode KP yang aktif .
@@ -36,12 +36,12 @@
                 <div class="small-box bg-info">
                   <div class="inner" id="kelompokcount">
                   <!-- <h3>12<sup style="font-size: 20px"> Kelompok</sup></h3> -->
-                  <p>Status sedang <b>PKL</b></p>
+                  <p>Status sedang <b></b></p>
                   </div>
                 <div class="icon">
                   <i class="ion ion-clipboard"></i>
                 </div>
-                <a href="/kelompok" class="small-box-footer">Cek List Kelompok <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="/group" class="small-box-footer">Cek List Kelompok <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-6">

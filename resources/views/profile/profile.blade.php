@@ -31,7 +31,7 @@
                 <div class="card-body box-profile">
                     <div class="text-center">
                     <div class="image">
-                    <img class="img-circle" width="100px" height="100px" src="{{ asset('/images/users/'.$dosen->foto) }}" >                    <!-- <img class="img-circle" src="{{ asset('uploads/avatar/' . $dosen->foto) }}" width="50px" height="50px"> -->
+                    <img class="img-circle" width="100px" height="100px" src="{{ asset('/images/users/'.$dosen->foto) }}" onerror="this.onerror=null;this.src='{{ asset('/dist/img/default-avatar.png') }}';">                    <!-- <img class="img-circle" src="{{ asset('uploads/avatar/' . $dosen->foto) }}" width="50px" height="50px"> -->
                     </div>
                     </div>
                                             

@@ -9,7 +9,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Daftar Mahasiswa </h3>
+              <h3 class="card-title">Daftar Kegiatan Mahasiswa </h3>
             </div>
               <table id="table-buku-harian" class="table table-bordered table-striped">
                 <thead>
@@ -19,8 +19,8 @@
                   <th>Datang</th>
                   <th>pulang</th>
                   <th>kegiatan</th>
-                  <!-- <th>Status</th> -->
-                  <th>Aksi</th>
+                  <th>Status</th>
+                  <!-- <th>Aksi</th> -->
                 </tr>
                 </thead>
                 <tbody>            
@@ -50,7 +50,7 @@
     tableGroup = $('#table-buku-harian').DataTable({
         processing	: true,
         language: {
-                    search: "INPUT",
+                    search: "Search",
                     searchPlaceholder: "Search records"
                   },
         // dom 		: "<fl<t>ip>",
@@ -66,7 +66,8 @@
             { data: 'waktu_mulai', name:'waktu_mulai', visible:true},
             { data: 'waktu_selesai', name:'waktu_selesai', visible:true},
             { data: 'kegiatan', name:'kegiatan', visible:true},
-            { data: 'action', name:'action', visible:true},
+            { data: 'status', name:'status', visible:true},
+            // { data: 'action', name:'action', visible:true},
         ],
       });
   });

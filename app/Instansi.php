@@ -12,7 +12,7 @@ class Instansi extends Model
     protected $primaryKey = 'id_instansi';
    
    
-    // public function dosen(){
-    //     return $this->hasMany('App\Dosen','id_users','id_users') ;
-    // }
+    public function user(){
+        return $this->hasMany('App\User','id_users','id_users') ;
+    }
 }

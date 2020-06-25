@@ -33,21 +33,27 @@ use App\listnilaiakhir;
  });
 
     Route::group(['middleware' => ['api']], function () {
-    Route::resource('profile','ProfileController');
+    Route::apiResource('profile','ProfileController');
     Route::get('kelompok/detail/{id}','GroupController@api_showDetail');
  });
 
+    Route::post('/profile/{id}', 'ProfileController@update');
+    Route::post('/ubah_profile/{id}','ProfileController@update');
+    Route::post('/changepassword/{id}', 'ProfileController@changePassword');
     Route::apiResource('laporan','LaporanController');
     Route::apiResource('dosen','ProfileController');
     Route::apiResource('bukuharian','BukuHarianController');
     Route::apiResource('daftarnilaiakhir','DaftarNilaiAkhirController');
     Route::apiResource('listdaftarnilaiakhir','ListDaftarNilaiAkhirController');
     Route::apiResource('listnilaiakhir','ListNilaiAkhirController');
-   
+    Route::apiResource('listnilaiakhirpenguji','ListNilaiAkhirPengujiController');
+
    Route::get('/kelompokcount', 'DashboardController@kelompokCount');
    Route::get('/laporancount', 'DashboardController@laporanCount');
     
 
+   //  Route::post('login', 'UserController@login');
+    Route::get('logout', 'UserController@logout');
     Route::post('login', 'UserController@login');
     Route::middleware('auth:api')-> get('dosen/logout'. 'UserController@api_logout');
 

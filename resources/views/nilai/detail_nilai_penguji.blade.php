@@ -10,7 +10,7 @@
             
             <div class="card card-primary card-outline">
                 <div class="box-header">
-                    <h3 class="box-title">Penilaian Mahasiswa Details</h3>
+                    <h3 class="box-title">Penilaian Mahasiswa Details Penguji</h3>
                 </div><!-- /.box-header -->
                 
       			<div class="card-body">
@@ -57,7 +57,7 @@
                 	</form>
 					<form role="form" id="editPenilaian1" >
 					@csrf
-					<input  type="hidden" name="id_kelompok_penilai" value="4">
+					<input  type="hidden" name="id_kelompok_penilai" value="3">
                     <input  type="hidden" name="id_mahasiswa" value=" {{ Request::segment(2) }}">
 						<div class="row">
 								<div class="col-md-3">                                
@@ -220,7 +220,7 @@
     $.ajax({
       type: "POST",
         // headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
-        url: "/api/listnilaiakhir",
+        url: "/api/listnilaiakhirpenguji",
         cache:false,
         dataType: "json",
         data: $(this).serialize(),

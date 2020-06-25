@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Komsi PKL</title>
+  <title>Komsi Kerja Praktek</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -51,11 +51,20 @@
           <span class="namaProfile"><b>{{$dosen->nama}}  </b></span>
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-          <a href="/login" id="btn-logout" class="dropdown-item">
+          <a href="/ubah_password" id="btn-password" class="dropdown-item">
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
-                  LOGOUT
+                 Ubah Password
+                </h3>
+              </div>
+            </div>
+          </a>
+          <a href="{{ url('/logout') }}" id="btn-logout" class="dropdown-item">
+            <div class="media">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Logout
                 </h3>
               </div>
             </div>
@@ -72,7 +81,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
-      <span class="brand-text font-weight-light">Komsi PKL</span>
+      <span class="brand-text font-weight-light">Komsi Kerja Praktek</span>
     </a>
 
     <!-- Sidebar -->
@@ -134,7 +143,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/list_nilaiAkhir" class="nav-link">
+                <a href="/list_nilaiAkhir_penguji" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dosen Penguji</p>
                 </a>
@@ -199,7 +208,7 @@
 <script src="../../dist/js/demo.js"></script>
 
 <script type="text/javascript">
-$(document).on('click','#btn-logout',function(event){
+$(document).on('click','#',function(event){
   event.preventDefault();
   $.ajax({
   url:'http://127.0.0.1:8000/api/login',

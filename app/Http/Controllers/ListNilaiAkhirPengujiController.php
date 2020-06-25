@@ -13,7 +13,7 @@ use App\DetailGroup;
 use DB;
 use Illuminate\Http\Request;
 
-class ListNilaiAkhirController extends Controller
+class ListNilaiAkhirPengujiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,13 +21,12 @@ class ListNilaiAkhirController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-        {
-            $data = Group::all();
+    {
+        $data = Group::all();
             // dd($data);
             return view('nilai.list_nilaiAkhir', compact('data'));
-    
     }
-    public function getData()
+    public function getDataPenguji()
     {
         $data = Group::where('id_dosen',1)->first()
         ->detailGroup()->with('mahasiswa','group')
@@ -38,13 +37,14 @@ class ListNilaiAkhirController extends Controller
         ->get();
             return datatables()->of($data)
             ->addColumn('action', function($row){
-                $btn = '<a href="'.route('detail-nilaimahasiswa',$row->id_mahasiswa).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
+                $btn = '<a href="'.route('detail-nilaimahasiswa-penguji',$row->id_mahasiswa).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
                 return $btn;
             })
             ->addIndexColumn()
             ->rawColumns(['action'])
             ->make(true);
     }
+
     public function indexAnggota()
     {
             return view('nilai.daftar_nilaiAkhir');
@@ -77,23 +77,6 @@ class ListNilaiAkhirController extends Controller
      */
     public function store(Request $request)
     {
-           // dd($request->all());
-        // // $data = $request->all();
-
-        // // dd($data);
-        // // foreach ($data['data'] as $datas) {
-        //     $row = new NilaiAkhir;
-        //     $row->fieldTable = $request->nameOnHtmlTextField;
-        //     // $row ->id_periode = $data['id_periode'];
-        //     // $row ->id_mahasiswa = $data['id_mahasiswa'];
-        //     // $row ->id_aspek_penilaian = $datas['id_aspek_penilaian'];
-        //     // $row ->id_kelompok_penilai = $datas['id_kelompok_penilai'];
-        //     // $row ->nilai= $datas['nilai'];
-        //     // $row ->created_by = $datas['created_by'];
-        //     // and so on for your all columns 
-        //     $row->save();   //at last save into db
-        // // }
-        // dd(\Auth::user());
         $periode=Periode::where(['status'=>'open'])->first();
         foreach($request->id_aspek_penilaian as $key => $value)
         {
@@ -113,32 +96,17 @@ class ListNilaiAkhirController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Group  $listNilaiAkhir
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id_users)
-    // {
-    //     $detail = Users::findOrFail($id_users);
-    //     $applyNilai = \DB::table('kelompok')
-    //                         ->join('kelompok_detail', 'kelompok.id_kelompok', '=', 'kelompok_detail.id_kelompok')
-    //                         ->join('mahasiswa', 'kelompok_detail.id_mahasiswa', 'mahasiswa.id_mahasiswa')
-    //                         ->join('users', 'dosen.id_users', 'dosen.id_dosen')
-    //                         ->join('users', 'instansi.id_users', 'instansi.id_instansi')
-    //                         ->join('kelompok', 'periode.id_periode', '=', 'kelompok.id_kelompok')
-    //                         ->where('kelompok_detail.status_keanggotaan', 'Ketua')
-    //                         ->select('dosen.nama', 'instansi.id_instansi', 'instansi.nama', 'instansi.alamat', 'periode.id_periode', 'periode.tgl_mulai','periode.tgl_selesai','daftar_lowongan.id_daftar_lowongan', 'daftar_lowongan.status')
-    //                         ->where('users.id_users', $id_users)
-    //                         ->get();
-    //     return view('nilai.detail_nilai',compact('detail', 'applyNilai'));
-    // }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Group  $listNilaiAkhir
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $listNilaiAkhir)
+    public function edit($id)
     {
         //
     }
@@ -147,12 +115,11 @@ class ListNilaiAkhirController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Group  $listNilaiAkhir
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $listNilaiAkhir)
-    {   
-        
+    public function update(Request $request, $id)
+    {
         $nilai=NilaiAkhir::find($id);
         if(is_null($nilai)){
             return response()->json(['messege'=>'record not found', 400]);
@@ -164,14 +131,13 @@ class ListNilaiAkhirController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Group  $listNilaiAkhir
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $listNilaiAkhir)
+    public function destroy($id)
     {
         //
     }
-
     public function show($id_kelompok){
         $kelompok = Group::where('kelompok.id_kelompok',$id_kelompok)
         ->with('dosen','periode')
