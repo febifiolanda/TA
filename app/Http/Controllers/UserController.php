@@ -73,7 +73,7 @@ class UserController extends Controller
                 {
                     Auth::logout();     
                     Session::flush();    
-                    return redirect('/login');
+                    return redirect('login');
                 }
     // public function logout(Request $request){
     //     if(Auth::guard('administrator')->check()){

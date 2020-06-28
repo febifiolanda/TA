@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mahasiswa;
 use App\Periode;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 
@@ -23,8 +26,16 @@ class ListDaftarNilaiAkhirController extends Controller
     }
     public function getData()
     {
-        //bagian ini
-        $data = Mahasiswa::with('periode')->get();
+        $dosen =  Auth::user()->dosen()
+        ->leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        $data = Mahasiswa::with('periode')
+        ->join('kelompok_detail','kelompok_detail.id_mahasiswa','mahasiswa.id_mahasiswa')
+        ->join('kelompok','kelompok.id_kelompok','kelompok_detail.id_kelompok')
+        ->where('kelompok.id_dosen',$dosen->id_dosen)
+        ->get();
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){

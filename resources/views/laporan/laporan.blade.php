@@ -73,7 +73,7 @@
     tableLaporan = $('#table-laporan').DataTable({
         processing	: true,
         language: {
-                    search: "INPUT",
+                    search: "Search",
                     searchPlaceholder: "Search records"
                   },
         // dom 		: "<fl<t>ip>",

@@ -12,6 +12,7 @@ use App\Users;
 use App\Dashboard;
 use App\listnilaiakhir;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -53,9 +54,9 @@ use App\listnilaiakhir;
     
 
    //  Route::post('login', 'UserController@login');
-    Route::get('logout', 'UserController@logout');
+   //  Route::get('logout', 'UserController@logout');
     Route::post('login', 'UserController@login');
-    Route::middleware('auth:api')-> get('dosen/logout'. 'UserController@api_logout');
+   //  Route::middleware('auth:api')-> get('dosen/logout'. 'UserController@api_logout');
 
 //     Route::post('login', function(Request $request){
 //     if(auth()->attempt([

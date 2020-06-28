@@ -13,10 +13,9 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form role="form">
+                <!-- <form role="form">
                   <div class="col-sm-4">
                   <p>Saring berdasarkan</p>
-                      <!-- select -->
                       <div class="form-group">
                           <select class="form-control form-control-sm">
                             <option>Periode PKL</option>
@@ -27,7 +26,7 @@
                           </select>
                        </div>
                       <button type="submit" class="btn btn-default">Filter</button> <br><br>
-                </form>
+                </form> -->
                   </div>
                         <table id="table-group" class="table table-bordered table-striped">
                           <thead>
@@ -66,7 +65,7 @@
     tableGroup = $('#table-group').DataTable({
         processing	: true,
         language: {
-                    search: "INPUT",
+                    search: "Search",
                     searchPlaceholder: "Search records"
                   },
         // dom 		: "<fl<t>ip>",

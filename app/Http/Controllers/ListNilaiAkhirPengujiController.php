@@ -11,6 +11,9 @@ use App\NilaiAkhir;
 use App\Instansi;
 use App\DetailGroup;
 use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class ListNilaiAkhirPengujiController extends Controller
@@ -28,7 +31,14 @@ class ListNilaiAkhirPengujiController extends Controller
     }
     public function getDataPenguji()
     {
-        $data = Group::where('id_dosen',1)->first()
+        $dosen =  Auth::user()->dosen()
+        ->leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+        'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 
+        'dosen.nip')
+        ->first();
+        $data = Group::where('id_dosen',$dosen->id_dosen)->first()
         ->detailGroup()->with('mahasiswa','group')
         ->where(function($q) {
             $q->where('kelompok_detail.status_join', 'create')

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Laporan;
 use Illuminate\Http\Request;
 use Validator;
+use Mahasiswa;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 
 class LaporanController extends Controller
@@ -30,7 +34,16 @@ class LaporanController extends Controller
     }
     public function getData()
     {
-        $data = Laporan::with('group.periode')->get();
+        $dosen =  Auth::user()->dosen()
+        ->leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
+        $data = Laporan::with('group.periode')
+        ->join('kelompok','kelompok.id_kelompok','laporan.id_kelompok')
+        // ->join('kelompok_detail','kelompok.id_kelompok','kelompok_detail.id_kelompok')
+        ->where('kelompok.id_dosen',$dosen->id_dosen)
+        ->get();
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){

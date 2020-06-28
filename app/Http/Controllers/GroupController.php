@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Group;
 use App\Dosen;
 use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\DetailGroup;
 
 
@@ -20,17 +23,24 @@ class GroupController extends Controller
     {
         $data = Group::all();
         // dd($data);
-        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
-        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
-        ->first();
+        $dosen =  Auth::user()->dosen()
+                            ->leftJoin('users', 'dosen.id_users', 'users.id_users')
+                            ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+                            ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+                            ->first();
         return view('kelompok.kelompok', compact('data','dosen'));
 
        
     }
     public function getData()
     {
+        $dosen =  Auth::user()->dosen()
+        ->leftJoin('users', 'dosen.id_users', 'users.id_users')
+        ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->first();
         $data = Group::where('tahap', 'diterima')
+        ->where('kelompok.id_dosen','=',$dosen->id_dosen)
         ->join('kelompok_detail','kelompok_detail.id_kelompok','kelompok.id_kelompok')
         ->where('kelompok_detail.status_keanggotaan','Ketua')
         ->join('mahasiswa','mahasiswa.id_mahasiswa','kelompok_detail.id_mahasiswa')
@@ -102,9 +112,10 @@ class GroupController extends Controller
      */
     public function show($id_kelompok)
     {
-        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        $dosen =  Auth::user()->dosen()
+        ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
         return view('kelompok.detail_kelompok_baru',compact('dosen'));
     }

@@ -60,7 +60,7 @@
               </div>
             </div>
           </a>
-          <a href="{{ url('/logout') }}" id="btn-logout" class="dropdown-item">
+          <a href="/logout-user" id="btn-logout" class="dropdown-item">
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">

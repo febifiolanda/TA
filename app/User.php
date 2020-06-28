@@ -60,5 +60,8 @@ class User extends Authenticatable
     public function instansi(){
         return $this->hasOne(Profile::class,'id_users');
     }
+     public function dosen(){
+        return $this->hasOne(Dosen::class,'id_users');
+    }
 }
 

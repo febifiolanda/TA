@@ -13,10 +13,10 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form role="form">
+                <!-- <form role="form">
                   <div class="col-sm-4">
                   <p>Saring berdasarkan</p>
-                      <!-- select -->
+                     
                       <div class="form-group">
                           <select class="form-control form-control-sm">
                             <option>Periode PKL</option>
@@ -27,7 +27,7 @@
                           </select>
                        </div>
                       <button type="submit" class="btn btn-default">Filter</button> <br><br>
-                </form>
+                </form> -->
                   </div>
                         <table id="table-listpenguji" class="table table-bordered table-striped">
                           <thead>
@@ -35,6 +35,7 @@
                               <th>Id</th>
                               <th>No</th>
                               <th>Nama Kelompok</th>
+                              <th>Nama Mahasiswa</th>
                               <th>Angkatan</th>
                               <th>Aksi</th>
                             </tr>
@@ -64,27 +65,27 @@
   var tableGroup;
   $(document).ready(function(){
     tableGroup = $('#table-listpenguji').DataTable({
-        processing	: true,
-        language: {
-                    search: "INPUT",
-                    searchPlaceholder: "Search records"
-                  },
-        // dom 		: "<fl<t>ip>",
-  			serverSide	: true,
-  			stateSave: true,
-        ajax		: {
-            url: "{{ url('table/data-groupNilaiAkhirPenguji') }}",
-            type: "GET",
-        },
-        columns: [
-            { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
-            { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
-            { data: 'group.nama_kelompok', name:'group.nama_kelompok', visible:true},
-            { data: 'mahasiswa.nama', name:'mahasiswa.nama', visible:true},
-            { data: 'mahasiswa.angkatan', name:'mahasiswa.angkatan', visible:true},
-            { data: 'action', name:'action', visible:true},
-        ],
-      });
+      processing	: true,
+      language: {
+                  search: "Search",
+                  searchPlaceholder: "Search records"
+                },
+      // dom 		: "<fl<t>ip>",
+      serverSide	: true,
+      stateSave: true,
+      ajax		: {
+          url: "{{ url('table/data-groupNilaiAkhirPenguji') }}",
+          type: "GET",
+      },
+      columns: [
+          { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
+          { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
+          { data: 'group.nama_kelompok', name:'group.nama_kelompok', visible:true},
+          { data: 'mahasiswa.nama', name:'mahasiswa.nama', visible:true},
+          { data: 'mahasiswa.angkatan', name:'mahasiswa.angkatan', visible:true},
+          { data: 'action', name:'action', visible:true},
+      ],
+    });
   });
 </script>
 @endsection

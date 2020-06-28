@@ -5,6 +5,9 @@ use App\BukuHarian;
 use App\Group;
 use App\Dosen;
 use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -18,9 +21,10 @@ class BukuHarianController extends Controller
      */
     public function index($id)
     {
-        $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+        $dosen =  Auth::user()->dosen()
+        ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama','dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
 
         return view('logbook.list_kegiatan', compact('id','dosen'));
@@ -45,11 +49,10 @@ class BukuHarianController extends Controller
     }
 
     public function getDataMahasiswa()
-    {   $dosen = Dosen::leftJoin('users', 'dosen.id_users', 'users.id_users')
+    {    $dosen =  Auth::user()->dosen()
+        ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
-        'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 
-        'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
         $data = Group::where('id_dosen',$dosen->id_dosen)->first()
                 ->detailGroup()->with('mahasiswa','group')

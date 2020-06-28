@@ -9,7 +9,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Detail Kelompok </h3>
+              <h3 class="card-title">Detail Kelompok Mahasiswa</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -42,7 +42,7 @@
                                         <div class="text-center">
                                         @if (!empty($instansi))
                                         <img class="profile-user-img img-fluid img-circle"
-                                        src="{{ asset('/images/users/'.$instansi->foto) }}"
+                                        src="{{env('URL_PERUSAHAAN')}}{{'images/users/'.$instansi->foto}}"
                                                 alt="User profile picture">
                                                       @else
                                                       <img class="profile-user-img img-fluid img-circle"
@@ -139,14 +139,14 @@
     tableGroup = $('#table-groupdetail').DataTable({
         processing	: true,
         language: {
-                    search: "INPUT",
+                    search: "Search",
                     searchPlaceholder: "Search records"
                   },
         // dom 		: "<fl<t>ip>",
   			serverSide	: true,
   			stateSave: true,
         ajax		: {
-            url:"{{ url('table/data-detailKelompok/'.$id_kelompok) }}",
+            url:"{{ url('table/data-detailKelompok/.$id_kelompok) }}",
             type: "GET",
         },
         columns: [

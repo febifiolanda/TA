@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('layout.welcome',compact('dosen'));
 });
 Route::post('/login-user', 'UserController@login')->name('login-user');
-Route::get('/logout', 'UserController@logout')->name('logout');
+Route::get('/logout-user', 'UserController@logout')->name('logout-user');
 Route::prefix('dosen')->group(function () {
     Route::get('/login', 'UserController@logindosen')->name('/login');
 });
@@ -66,11 +66,12 @@ Route::get('/list_kegiatan/{id_mahasiswa}', 'BukuHarianController@index')->name(
 Route::resource('company','CompanyController');
 Route::resource('group','GroupController');
 Route::get('/list_anggota/{id_kelompok}', 'ListNilaiAkhirController@indexAnggota')->name('group.anggota');
-
+Route::get('/kelompokcount', 'DashboardController@kelompokCount');
+Route::get('/laporancount', 'DashboardController@laporanCount');
 Route::prefix('dosen')->group(function () {
     Route::get('/', 'DashboardController@indexadmin');
     // Route::get('/dashboard', 'Auth\LoginController@dashboard');
-    Route::get('/dasboard', 'DashboardController@indexadmin');
+    // Route::get('/dasboard', 'DashboardController@indexadmin');
 });
 Route::post('ubahPassword', 'ProfileController@changePassword')->name('change.password');
 });
