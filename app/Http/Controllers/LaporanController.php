@@ -37,7 +37,8 @@ class LaporanController extends Controller
         $dosen =  Auth::user()->dosen()
         ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+        'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
         $data = Laporan::with('group.periode')
         ->join('kelompok','kelompok.id_kelompok','laporan.id_kelompok')
@@ -48,7 +49,8 @@ class LaporanController extends Controller
         return datatables()->of($data)
         ->addColumn('action', function($row){
             // $btn = '<a href="'.$row->berkas.'" class="btn btn-info"><i class="fas fa-list"></i></a>';
-            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->berkas.'" data-original-title="Berkas" class="berkas btn btn-primary btn-sm lihatBerkas">Berkas</a>';
+            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->berkas.
+            '" data-original-title="Berkas" class="berkas btn btn-primary btn-sm lihatBerkas">Berkas</a>';
             return $btn;
         })
         ->addColumn('tgl_upload', function($row){

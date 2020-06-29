@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Dosen;
 use App\NilaiAkhir;
 use DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use Auth;
 use App\Instansi;
 
 class Mah extends Controller
@@ -115,7 +113,7 @@ class Mah extends Controller
         $bobotTeman = \DB::table('kelompok_penilai')
         ->where('id_kelompok_penilai','1')
         ->first();
-        $resultTeman1 = $summaryTeman / $countTeman;
+        $resultTeman1 = $countTeman === 0 ? 0:$summaryTeman / $countTeman;
         $resultTeman2 = ($bobotTeman->bobot*$resultTeman1)/100;
 
         $summaryInstansi = NilaiAkhir::where('id_mahasiswa',$id_mahasiswa)
@@ -127,7 +125,7 @@ class Mah extends Controller
         $bobotInstansi = \DB::table('kelompok_penilai')
         ->where('id_kelompok_penilai','2')
         ->first();
-        $resultInstansi1 = $summaryInstansi / $countInstansi ;
+        $resultInstansi1 = $countInstansi === 0 ? 0:$summaryInstansi / $countInstansi ;
         $resultInstansi2 = ($bobotInstansi ->bobot*$resultInstansi1)/100;
 
         $summaryPenguji = NilaiAkhir::where('id_mahasiswa',$id_mahasiswa)
@@ -139,7 +137,7 @@ class Mah extends Controller
         $bobotPenguji = \DB::table('kelompok_penilai')
         ->where('id_kelompok_penilai','3')
         ->first();
-        $resultPenguji1 = $summaryPenguji / $countPenguji ;
+        $resultPenguji1 = $countPenguji === 0 ? 0:$summaryPenguji / $countPenguji ;
         $resultPenguji2 = ($bobotPenguji ->bobot*$resultPenguji1)/100;
 
         $summaryDospem = NilaiAkhir::where('id_mahasiswa',$id_mahasiswa)
@@ -151,7 +149,7 @@ class Mah extends Controller
         $bobotDospem = \DB::table('kelompok_penilai')
         ->where('id_kelompok_penilai','4')
         ->first();
-        $resultDospem1 = $summaryDospem / $countDospem ;
+        $resultDospem1 = $countDospem === 0 ? 0:$summaryDospem / $countDospem ;
         $resultDospem2 = ($bobotDospem ->bobot*$resultDospem1)/100;
 
         $finalResult = $resultTeman2 + $resultInstansi2 + $resultPenguji2 + $resultDospem2;

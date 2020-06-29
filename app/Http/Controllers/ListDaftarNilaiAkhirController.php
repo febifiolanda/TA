@@ -29,7 +29,8 @@ class ListDaftarNilaiAkhirController extends Controller
         $dosen =  Auth::user()->dosen()
         ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+         'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
         $data = Mahasiswa::with('periode')
         ->join('kelompok_detail','kelompok_detail.id_mahasiswa','mahasiswa.id_mahasiswa')
@@ -39,7 +40,8 @@ class ListDaftarNilaiAkhirController extends Controller
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){
-            $btn = ' <a href="'.route('/nilai_akhir',$row->id_mahasiswa).'" class="btn btn-info"><i class="fas fa-eye"></i></a>';
+            $btn = ' <a href="'.route('/nilai_akhir',$row->id_mahasiswa).
+            '" class="btn btn-info"><i class="fas fa-eye"></i></a>';
             return $btn;
         })
         ->addIndexColumn()

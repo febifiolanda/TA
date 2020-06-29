@@ -39,8 +39,10 @@ class BukuHarianController extends Controller
             return $tanggal;
         })
         ->addColumn('action', function($row){
-            $btn = '<a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'terima']).'" class="btn-sm btn-info"><i class="fas fa-pencil"></i>Terima</a>';
-            $btn = $btn.' <a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'tolak']).'" class="btn-sm btn-danger"><i class="fas fa-pencil"></i>Tolak</a>';
+            $btn = '<a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'terima']).
+            '" class="btn-sm btn-info"><i class="fas fa-pencil"></i>Terima</a>';
+            $btn = $btn.' <a href="'.route('acckegiatan',['id'=>$row->id_buku_harian,'tipe'=>'tolak']).
+            '" class="btn-sm btn-danger"><i class="fas fa-pencil"></i>Tolak</a>';
             return $btn;
         })
         ->addIndexColumn()
@@ -52,7 +54,8 @@ class BukuHarianController extends Controller
     {    $dosen =  Auth::user()->dosen()
         ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+         'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
         $data = Group::where('id_dosen',$dosen->id_dosen)->first()
                 ->detailGroup()->with('mahasiswa','group')

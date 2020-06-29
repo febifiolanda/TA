@@ -20,7 +20,7 @@ class NilaiAkhirController extends Controller
 
     public function getnilai($id_mahasiswa){
 
-        //ini caranya disamain kayak di ListDaftarNilaiAkhirController
+        
         $mahasiswa = DB::table('mahasiswa')->where('id_mahasiswa', $id_mahasiswa)->first();
     
         $summaryTeman = NilaiAkhir::where('id_mahasiswa',$id_mahasiswa)

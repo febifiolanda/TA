@@ -146,8 +146,8 @@
   			serverSide	: true,
   			stateSave: true,
         ajax		: {
-            url:"{{ url('table/data-detailKelompok/.$id_kelompok) }}",
-            type: "GET",
+            url:"{{ url('table/data-detailKelompok/'.$id_kelompok) }}",
+            type: "GET"
         },
         columns: [
             { data: 'id_kelompok_detail', name:'id_kelompok_detail', visible:false},

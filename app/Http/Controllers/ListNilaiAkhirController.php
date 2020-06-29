@@ -48,7 +48,8 @@ class ListNilaiAkhirController extends Controller
         ->get();
             return datatables()->of($data)
             ->addColumn('action', function($row){
-                $btn = '<a href="'.route('detail-nilaimahasiswa',$row->id_mahasiswa).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
+                $btn = '<a href="'.route('detail-nilaimahasiswa',$row->id_mahasiswa).
+                '" class="btn btn-info"><i class="fas fa-list"></i></a>';
                 return $btn;
             })
             ->addIndexColumn()

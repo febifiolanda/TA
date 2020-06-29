@@ -31,7 +31,8 @@ class DaftarPenilaianPengujiController extends Controller
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){
-            $btn = '<a href="'.route('list.anggota1',$row->id_kelompok).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
+            $btn = '<a href="'.route('list.anggota1',$row->id_kelompok).
+            '" class="btn btn-info"><i class="fas fa-list"></i></a>';
             return $btn;
         })
         ->addIndexColumn()

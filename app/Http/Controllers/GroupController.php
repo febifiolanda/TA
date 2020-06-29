@@ -28,16 +28,18 @@ class GroupController extends Controller
                             ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
                             ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
                             ->first();
-        return view('kelompok.kelompok', compact('data','dosen'));
-
-       
+        return view('kelompok.kelompok', compact('data','dosen'));   
     }
+
+
     public function getData()
     {
         $dosen =  Auth::user()->dosen()
         ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+         'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email',
+        'dosen.nip')
         ->first();
         $data = Group::where('tahap', 'diterima')
         ->where('kelompok.id_dosen','=',$dosen->id_dosen)
@@ -49,7 +51,8 @@ class GroupController extends Controller
         // dd($data);
         return datatables()->of($data)
         ->addColumn('action', function($row){
-            $btn = '<a href="'.url('/detail_kelompok_baru',$row->id_kelompok).'" class="btn btn-info"><i class="fas fa-list"></i></a>';
+            $btn = '<a href="'.url('/detail_kelompok_baru',$row->id_kelompok).
+            '" class="btn btn-info"><i class="fas fa-list"></i></a>';
             return $btn;
         })
         ->addIndexColumn()
