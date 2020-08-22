@@ -66,7 +66,20 @@
             { data: 'waktu_mulai', name:'waktu_mulai', visible:true},
             { data: 'waktu_selesai', name:'waktu_selesai', visible:true},
             { data: 'kegiatan', name:'kegiatan', visible:true},
-            { data: 'status', name:'status', visible:true},
+            // { data: 'status', name:'status', visible:true},
+            {
+          data:'status',
+          name:'status',
+          visible:true,
+          render: function(status, type, full, meta){
+      
+              if (status == 'diproses'){
+                return "<span class='badge bg-warning'>"+ status + "</span>";
+              }else if(status == 'diperiksa'){
+                return "<span class='badge bg-success'>"+ status + "</span>";
+              }
+            },
+          },
             // { data: 'action', name:'action', visible:true},
         ],
       });

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Dosen;
+use App\Profile;
 use App\NilaiAkhir;
 use DB;
 use Auth;
@@ -113,8 +113,8 @@ class Mah extends Controller
         $bobotTeman = \DB::table('kelompok_penilai')
         ->where('id_kelompok_penilai','1')
         ->first();
-        $resultTeman1 = $countTeman === 0 ? 0:$summaryTeman / $countTeman;
-        $resultTeman2 = ($bobotTeman->bobot*$resultTeman1)/100;
+        $resultTeman1 =number_format(@($countTeman === 0 ? 0:$summaryTeman / $countTeman),2);
+        $resultTeman2 =number_format(@(($bobotTeman->bobot*$resultTeman1)/100),2);
 
         $summaryInstansi = NilaiAkhir::where('id_mahasiswa',$id_mahasiswa)
         ->where('id_kelompok_penilai','2')
@@ -137,8 +137,8 @@ class Mah extends Controller
         $bobotPenguji = \DB::table('kelompok_penilai')
         ->where('id_kelompok_penilai','3')
         ->first();
-        $resultPenguji1 = $countPenguji === 0 ? 0:$summaryPenguji / $countPenguji ;
-        $resultPenguji2 = ($bobotPenguji ->bobot*$resultPenguji1)/100;
+        $resultPenguji1 =number_format(@($countPenguji === 0 ? 0:$summaryPenguji / $countPenguji),2) ;
+        $resultPenguji2 =number_format(@(($bobotPenguji ->bobot*$resultPenguji1)/100),2);
 
         $summaryDospem = NilaiAkhir::where('id_mahasiswa',$id_mahasiswa)
         ->where('id_kelompok_penilai','4')
@@ -149,8 +149,8 @@ class Mah extends Controller
         $bobotDospem = \DB::table('kelompok_penilai')
         ->where('id_kelompok_penilai','4')
         ->first();
-        $resultDospem1 = $countDospem === 0 ? 0:$summaryDospem / $countDospem ;
-        $resultDospem2 = ($bobotDospem ->bobot*$resultDospem1)/100;
+        $resultDospem1 = number_format(@($countDospem === 0 ? 0:$summaryDospem / $countDospem ),2);
+        $resultDospem2 =number_format(@(($bobotDospem ->bobot*$resultDospem1)/100),2);
 
         $finalResult = $resultTeman2 + $resultInstansi2 + $resultPenguji2 + $resultDospem2;
 

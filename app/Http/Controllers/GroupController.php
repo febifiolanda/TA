@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Group;
-use App\Dosen;
+use App\Profile;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -70,11 +70,11 @@ class GroupController extends Controller
         })
         // ->groupBy('id_mahasiswa')
         ->join('mahasiswa','mahasiswa.id_mahasiswa','kelompok_detail.id_mahasiswa')
-        // ->addIndexColumn()
-        // ->make(true)
-
         ->get();
-
+        return datatables()->of($data)
+        ->addIndexColumn()
+        ->make(true); 
+        
         $instansi = DB::table('magang')->where('magang.id_kelompok',$id_kelompok)
         ->join('instansi','instansi.id_instansi','magang.id_instansi')
         ->first();
@@ -84,6 +84,7 @@ class GroupController extends Controller
             'instansi'=> $instansi,
             'data' => $data
         ],200);
+        
     }
 
     /**

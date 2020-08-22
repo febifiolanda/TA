@@ -13,7 +13,7 @@ use App\User;
 use App\Rules\MatchOldPassword;
 // use Image;
 
-use App\Dosen;
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -32,7 +32,9 @@ class ProfileController extends Controller
         $dosen =  Auth::user()->dosen()
         ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+         'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email',
+         'dosen.nip')
         ->first();
         return view('profile.profile', compact('dosen'));
     }
@@ -64,13 +66,13 @@ class ProfileController extends Controller
 
     //menyimpan ke table posts kemudian redirect page 
 
-    $post = Dosen::create(['foto' => $request->foto]);
+    $post = Profile::create(['foto' => $request->foto]);
     return redirect(route('post.add'));
         }
 
     public function updateAvatar(Request $request, $id_dosen)
     {
-        $dosen = Dosen::where('id_dosen',$id_dosen)->first();
+        $dosen = Profile::where('id_dosen',$id_dosen)->first();
 
         $this-> validate($request,
         [
@@ -81,7 +83,7 @@ class ProfileController extends Controller
 
         $extension = strtolower($file->getClientOriginalExtension());
         // $filename = $dosen->nama . '.' . $extension;
-        $filename = "PhotoProfile-".$dosen->id_users.".".$file->getClientOriginalExtension();
+        $filename = "PhotoProfile-".$dosen->id_users."-".time().".".$file->getClientOriginalExtension();
         Storage::put('images/users/' . $filename, File::get($file));
         $file_server = Storage::get('images/users/' . $filename);
         // $file_server = Storage::get('public/uploads/avatar/' . $filename);
@@ -136,10 +138,20 @@ class ProfileController extends Controller
 
     public function changePassword(Request $request)
     {
-
+        // $this->validate($request, [
+        //     'password' => 'required|min:6|max:191'
+        // ],
+        // [
+        //     'password.min' => 'password is too short !',
+        //     'password.max' => 'password is too long !',
+        // ]);
+        // $data = User::where ('id_users',$id_users)->first();
+        // $data->password = Hash::make($request->password);
+        // $data->save();
+        // return response()->json(['message'=>'Password updated successfully.']);
         $request->validate([
             
-            'new_password' => ['required'],
+            'new_password' => ['required','min:6','max:191'],
             'new_confirm_password' => ['same:new_password'],
         ]);
    
@@ -163,11 +175,11 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $profile=Dosen::find($id);
+        $profile=Profile::find($id);
         if(is_null($profile)){
-            return response()->json(['messege'=>'record not found', 400]);
+            return response()->json(['message' => 'Data updated successfully.']);
         }
-        return response()->json(Dosen::find($id), 200);
+       
         // $data = Dosen::find($id);
         // // return($data);
         // return response()->json([
@@ -184,8 +196,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $dosen = Dosen::findOrFail($id);
+        $dosen = Profile::findOrFail($id);
         return view('profile.edit_profil', compact('dosen'));
+        return response()->json(['message' => 'Data updated successfully.']);
     }
 
     /**
@@ -214,7 +227,7 @@ class ProfileController extends Controller
             'nip' => 'can not be empty !',
         ]);
 
-        $dosen = Dosen::where('id_dosen',$id_dosen)->first();
+        $dosen = Profile::where('id_dosen',$id_dosen)->first();
         $dosen->nama = $request->nama;
         $dosen->no_hp = $request->no_hp;
         $dosen->email = $request->email;

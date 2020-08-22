@@ -11,7 +11,7 @@
         <div class="col-md-12">
           <!-- general form elements -->
           <div class="box-header">
-             <h3 class="box-title">Penilaian Dosen Pembimbing Mahasiswa PKL</h3>
+             <h3 class="box-title">Penilaian Dosen Pembimbing Mahasiswa KP</h3>
              </div>
                 <section class="content">
 			<div class="row justify-content-center">

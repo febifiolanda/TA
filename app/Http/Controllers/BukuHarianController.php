@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\BukuHarian;
 use App\Group;
-use App\Dosen;
+use App\Profile;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +32,9 @@ class BukuHarianController extends Controller
 
     public function getData($id_mahasiswa)
     {
-        $data = BukuHarian::where('id_mahasiswa',$id_mahasiswa)->get();
+        $data = BukuHarian::where('id_mahasiswa',$id_mahasiswa)
+        ->orderBy('created_at','DESC')
+        ->get();
         return datatables()->of($data)
         ->addColumn('tanggal', function($row){
             $tanggal = Carbon::parse($row->tanggal)->format('j F Y');
@@ -54,23 +56,18 @@ class BukuHarianController extends Controller
     {    $dosen =  Auth::user()->dosen()
         ->leftJoin('users', 'dosen.id_users', 'users.id_users')
         ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
-        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
-         'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
+        ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama', 'dosen.foto','roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 'dosen.nip')
         ->first();
-        $data = Group::where('id_dosen',$dosen->id_dosen)->first()
-                ->detailGroup()->with('mahasiswa','group')
-                ->where(function($q) {
-                    $q->where('kelompok_detail.status_join', 'create')
-                    ->orWhere('kelompok_detail.status_join', 'diterima');
-                })
-                ->join('magang','magang.id_kelompok','kelompok_detail.id_kelompok')
-                ->join('instansi','instansi.id_instansi','magang.id_instansi')
-                ->select('kelompok_detail.*','instansi.nama as nama_instansi')
-                ->get();
-        // $instansi = DB::table('magang')->where('magang.id_kelompok',$id_kelompok)
-        // ->join('instansi','instansi.id_instansi','magang.id_instansi')
-        // ->first();
-       
+        $group = Group::where('id_dosen',$dosen->id_dosen)->get();
+        $data = DB::table('kelompok_detail')
+                    ->leftJoin('kelompok','kelompok_detail.id_kelompok','kelompok.id_kelompok')
+                    ->leftJoin('mahasiswa','kelompok_detail.id_mahasiswa','mahasiswa.id_mahasiswa')
+                    ->join('magang','magang.id_kelompok','kelompok_detail.id_kelompok')
+                    ->join('instansi','instansi.id_instansi','magang.id_instansi')
+                    ->whereIn('kelompok_detail.status_join',['create','diterima'])
+                    ->where('kelompok.id_dosen',$dosen->id_dosen)
+                    ->select('mahasiswa.id_mahasiswa','mahasiswa.nama as nama_mahasiswa','mahasiswa.nim','instansi.nama as nama_instansi','kelompok.nama_kelompok')
+                    ->get();
        
         return datatables()->of($data)
         ->addColumn('action', function($row){

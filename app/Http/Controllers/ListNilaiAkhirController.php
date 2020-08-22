@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Periode;
 use App\Magang;
-use App\Dosen;
+use App\Profile;
 use App\Mahasiswa;
 use App\NilaiAkhir;
 use App\Instansi;
@@ -39,17 +39,31 @@ class ListNilaiAkhirController extends Controller
         'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 
         'dosen.nip')
         ->first();
-        $data = Group::where('id_dosen',$dosen->id_dosen)->first()
-        ->detailGroup()->with('mahasiswa','group')
-        ->where(function($q) {
-            $q->where('kelompok_detail.status_join', 'create')
-            ->orWhere('kelompok_detail.status_join', 'diterima');
-        })
+        $group = Group::where('id_dosen',$dosen->id_dosen)->get();
+        $data = DB::table('kelompok_detail')
+                    ->leftJoin('kelompok','kelompok_detail.id_kelompok','kelompok.id_kelompok')
+                    ->leftJoin('mahasiswa','kelompok_detail.id_mahasiswa','mahasiswa.id_mahasiswa')
+                    ->whereIn('kelompok_detail.status_join',['create','diterima'])
+                    ->where('kelompok.id_dosen',$dosen->id_dosen)
+                    ->select('mahasiswa.id_mahasiswa','mahasiswa.nama as nama_mahasiswa','mahasiswa.nim','kelompok.nama_kelompok')
+       
         ->get();
             return datatables()->of($data)
             ->addColumn('action', function($row){
+                $dosen =  Auth::user()->dosen()
+                ->leftJoin('users', 'dosen.id_users', 'users.id_users')
+                ->leftJoin('roles', 'users.id_roles', 'roles.id_roles')
+                ->select('dosen.id_dosen', 'dosen.id_users', 'users.id_users', 'dosen.nama',
+                'dosen.foto', 'roles.id_roles', 'roles.roles', 'dosen.no_hp', 'dosen.email', 
+                'dosen.nip')
+                ->first();
+                $cekdisable = NilaiAkhir::where('id_mahasiswa',$row->id_mahasiswa)
+                ->where('created_by',$dosen->id_users)
+                ->select('created_by')
+                ->first();
+                $disable = $cekdisable!=null? "disabled" : " ";
                 $btn = '<a href="'.route('detail-nilaimahasiswa',$row->id_mahasiswa).
-                '" class="btn btn-info"><i class="fas fa-list"></i></a>';
+                '"class="btn btn-info  ' . $disable . '"><i class="fas fa-list"></i></a>';
                 return $btn;
             })
             ->addIndexColumn()
@@ -115,10 +129,11 @@ class ListNilaiAkhirController extends Controller
             $model->id_kelompok_penilai=$request->id_kelompok_penilai;
             $model->id_mahasiswa = $request->id_mahasiswa;
             $model->isDeleted= 0;
-            $model->created_by= 123;
+            $model->created_by=  $request->id_users;
             $model->save();
-        }
-        return response()->json($request->all(), 201);
+        }  
+        // return redirect("nilai.list_nilaiAkhir")->with('save', 'Nilai added successfully.');
+        return response()->json(['message' => 'Nilai added successfully.']);
     }
 
     /**

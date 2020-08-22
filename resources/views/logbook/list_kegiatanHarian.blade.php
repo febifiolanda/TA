@@ -102,9 +102,9 @@
         columns: [
             { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
             { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
-            { data: 'group.nama_kelompok', name:'group.nama_kelompok', visible:true},
-            { data: 'mahasiswa.nama', name:'mahasiswa.nama', visible:true},
-            { data: 'mahasiswa.nim', name:'mahasiswa.nim', visible:true},
+            { data: 'nama_kelompok', name:'nama_kelompok', visible:true},
+            { data: 'nama_mahasiswa', name:'nama_mahasiswa', visible:true},
+            { data: 'nim', name:'nim', visible:true},
             { data: 'nama_instansi', name:'nama_instansi', visible:true},
             { data: 'action', name:'action', visible:true},
         ],

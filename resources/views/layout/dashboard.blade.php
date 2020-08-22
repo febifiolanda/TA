@@ -36,7 +36,7 @@
                 <div class="small-box bg-info">
                   <div class="inner" id="kelompokcount">
                   <!-- <h3>12<sup style="font-size: 20px"> Kelompok</sup></h3> -->
-                  <p>Status sedang <b></b></p>
+                  <p>Status sedang <b>KP</b></p>
                   </div>
                 <div class="icon">
                   <i class="ion ion-clipboard"></i>

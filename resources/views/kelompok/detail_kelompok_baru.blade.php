@@ -96,7 +96,7 @@
                           <thead>
                             <tr>
                               <th>ID</th>
-                              <!-- <th>No</th> -->
+                              <th>No</th>
                               <th>Foto</th>
                               <th>Nama Mahasiswa</th>
                               <th>Nim</th>
@@ -133,7 +133,7 @@
 <script src="../../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- page script -->
-<script type="text/javascript">
+<script>
   var tableGroup;
   $(document).ready(function(){
     tableGroup = $('#table-groupdetail').DataTable({
@@ -151,7 +151,7 @@
         },
         columns: [
             { data: 'id_kelompok_detail', name:'id_kelompok_detail', visible:false},
-            // { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
+            { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
             { data: 'foto', name: 'foto',
                     render: function( data, type, full, meta ) {
                         return "<img src="+ data +" height=\"50\"/>";

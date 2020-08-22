@@ -36,7 +36,7 @@
                               <th>No</th>
                               <th>Nama Kelompok</th>
                               <th>Nama Mahasiswa</th>
-                              <th>Angkatan</th>
+                              <th>NIM</th>
                               <th>Aksi</th>
                             </tr>
                           </thead>
@@ -80,9 +80,9 @@
       columns: [
           { data: 'id_mahasiswa', name:'id_mahasiswa', visible:false},
           { data: 'DT_RowIndex', name:'DT_RowIndex', visible:true},
-          { data: 'group.nama_kelompok', name:'group.nama_kelompok', visible:true},
-          { data: 'mahasiswa.nama', name:'mahasiswa.nama', visible:true},
-          { data: 'mahasiswa.angkatan', name:'mahasiswa.angkatan', visible:true},
+          { data: 'nama_kelompok', name:'nama_kelompok', visible:true},
+          { data: 'nama_mahasiswa', name:'nama_mahasiswa', visible:true},
+          { data: 'nim', name:'nim', visible:true},
           { data: 'action', name:'action', visible:true},
       ],
     });

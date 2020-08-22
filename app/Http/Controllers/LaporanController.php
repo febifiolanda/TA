@@ -52,6 +52,10 @@ class LaporanController extends Controller
             $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->berkas.
             '" data-original-title="Berkas" class="berkas btn btn-primary btn-sm lihatBerkas">Berkas</a>';
             return $btn;
+            // $btn = '<button type="button" name="show" id="' . $row->berkas. '" class="btn btn-warning btn-sm lihatBerkas" ><i class="fas fa-eye"></i></button>';
+            //         return $btn;
+
+
         })
         ->addColumn('tgl_upload', function($row){
             $tgl_upl = Carbon::parse($row->created_at)->format('j F Y');

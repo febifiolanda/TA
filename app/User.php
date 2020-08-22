@@ -61,7 +61,7 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class,'id_users');
     }
      public function dosen(){
-        return $this->hasOne(Dosen::class,'id_users');
+        return $this->hasOne(Profile::class,'id_users');
     }
 }
 

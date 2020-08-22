@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dosen extends Model
+class Profile extends Model
 {
     protected $table = 'dosen';
     protected $guarded = ['created_at', 'updated_at'];

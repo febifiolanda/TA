@@ -17,8 +17,8 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
    <!-- DataTables -->
    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-   <!-- Toast -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -43,7 +43,7 @@
             </button>
         </div>
       </div>
-    </form> -->
+    </form> --> 
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -55,6 +55,7 @@
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
+                <i class="nav-icon fas fa-key"> </i>
                  Ubah Password
                 </h3>
               </div>
@@ -64,6 +65,7 @@
             <div class="media">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
+                <i class="nav-icon fas fa-power-off"> </i>
                   Logout
                 </h3>
               </div>
@@ -72,7 +74,6 @@
         </div>
       </li>
     </ul>
-      
       <!-- Notifications Dropdown Menu -->
   </nav>
   <!-- /.navbar -->
@@ -80,19 +81,19 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <span class="brand-text font-weight-light">Komsi Kerja Praktek</span>
+    <a href="/dashboard" class="brand-link">
+      <span class="brand-text font-weight-light"><b>Komsi Kerja Praktek</b></span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+      <div class="image">
           <img src="{{ asset('/images/users/'.$dosen->foto) }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block namaProfile"><b>{{$dosen->nama}}</b></a>
+          <a href="/profile" class="d-block namaProfile"><b>{{$dosen->nama}}</b></a>
         </div>
       </div>
 
@@ -170,10 +171,10 @@
                 <a href="/laporan" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan PKL</p>
-                </a>
+                  </a>
               </li>
             </ul>
-          </li>
+</li>
 
       </nav>
       <!-- /.sidebar-menu -->
@@ -193,19 +194,20 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+<script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
+<!-- <script src="../../plugins/jquery/jquery.min.js"></script> -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{ asset('/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  // $.widget.bridge('uibutton', $.ui.button)
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 
 <script type="text/javascript">
 $(document).on('click','#',function(event){
@@ -233,6 +235,7 @@ $(document).on('click','#',function(event){
 </script>
 <!-- Toast -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="../../dist/js/demo.js"></script>
 @yield('scripts')
 
 </body>

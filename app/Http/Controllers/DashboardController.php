@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Users;
 use App\Group;
-use App\Dosen;
+use App\Profile;
 use App\Laporan;
 use App\Magang;
 use App\Periode;

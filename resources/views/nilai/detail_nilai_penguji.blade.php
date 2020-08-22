@@ -59,6 +59,7 @@
 					@csrf
 					<input  type="hidden" name="id_kelompok_penilai" value="3">
                     <input  type="hidden" name="id_mahasiswa" value=" {{ Request::segment(2) }}">
+					<input  type="hidden" name="id_users" value="{{$dosen->id_users}}">
 						<div class="row">
 								<div class="col-md-3">                                
 									<div class="form-group text-center">
@@ -120,38 +121,38 @@
 								
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="skill" name="nilai[]" value="">
+										<input style="text-align:center" type="number" min="1" max="5" class="form-control" id="skill" name="nilai[]" value="" required>
 										<input style="text-align:center" type="hidden" name="id_aspek_penilaian[]" value="1">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="Kerapihan" name="nilai[]" value="">
+										<input style="text-align:center" type="number" min="1" max="5" class="form-control" id="Kerapihan" name="nilai[]" value=""required>
 										<input style="text-align:center" type="hidden" name="id_aspek_penilaian[]" value="5">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="sikap" name="nilai[]" value="">
+										<input style="text-align:center" type="number" min="1" max="5" class="form-control" id="sikap" name="nilai[]" value=""required>
 										<input style="text-align:center" type="hidden" name="id_aspek_penilaian[]" value="4">
 									</div>
 								</div>
 							
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="keaktifan" name="nilai[]" value="">
+										<input style="text-align:center" type="number" min="1" max="5" class="form-control" id="keaktifan" name="nilai[]" value=""required>
 										<input style="text-align:center" type="hidden" name="id_aspek_penilaian[]" value="2">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="perhatian" name="nilai[]" value="">
+										<input style="text-align:center" type="number" min="1" max="5" class="form-control" id="perhatian" name="nilai[]" value=""required>
 										<input style="text-align:center" type="hidden" name="id_aspek_penilaian[]" value="6">
 									</div>
 								</div>
 								<div class="col-md">
 									<div class="form-group text-center">
-										<input style="text-align:center" type="text" min="1" max="5" class="form-control required" id="kehadiran" name="nilai[]" value="">
+										<input style="text-align:center" type="number" min="1" max="5" class="form-control" id="kehadiran" name="nilai[]" value=""required>
 										<input style="text-align:center" type="hidden" name="id_aspek_penilaian[]" value="7">
 									</div>
 								</div>	
@@ -174,7 +175,7 @@
             </div>
             <div class="float-sm-right">
         <div class="box-footer">
-          <a href="#" onclick="goBack()" type="button" class="btn btn-primary" >Kembali</a>
+			<a href="/list_nilaiAkhir_penguji" class="btn btn-primary" >Kembali</a>
           <input type="submit" class="btn btn-primary pull-right" id="submit" value="Simpan Nilai" />
         </div>
         </div>
@@ -225,12 +226,13 @@
         dataType: "json",
         data: $(this).serialize(),
         success: function(data){
-            console.log(data);
+			console.log(data);
+            window.location.reload();
+            window.location = "/list_nilaiAkhir_penguji";
             toastr.options.closeButton = true;
             toastr.options.closeMethod = 'fadeOut';
             toastr.options.closeDuration = 100;
             toastr.success(data.message);
-            location.reload();
         },
         error: function(error){
           console.log(error);
